@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.fiap.connection.ConnectionFactory;
 import br.com.fiap.model.Corretor;
@@ -90,5 +92,26 @@ public class CorretorDAO {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public List<Corretor> selectAll() {
+		List<Corretor> corretores = new ArrayList<Corretor>();
+		String sql = "select * from tb_sgr_corretor order by id_corretor";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Corretor corretor = new Corretor();
+				corretor.setIdCorretor(rs.getLong("id_corretor"));
+				corretor.setNome(rs.getString("ds_nome"));
+				corretor.setEndereco(rs.getString("ds_endereco"));
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return corretores;
 	}
 }//TODO FAZER SELECT ALL

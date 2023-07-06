@@ -3,11 +3,13 @@ package br.com.fiap.view;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.LookAndFeel;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
 public class TelaCadastroVeiculo {
@@ -47,6 +49,9 @@ public class TelaCadastroVeiculo {
         frame.getContentPane().setLayout(null);
 
        
+       
+        
+        
         
         
         JComboBox<String> comboBox = new JComboBox<>();
@@ -55,45 +60,49 @@ public class TelaCadastroVeiculo {
         comboBox.addItem("Passeio");
         comboBox.addItem("Caminhão");
         
+        
+        
         comboBox.setToolTipText("");
         comboBox.setForeground(new Color(0, 0, 0));
         comboBox.setBackground(new Color(255, 255, 255));
-        comboBox.setBounds(198, 273, 339, 87);
+        comboBox.setBounds(198, 273, 341, 87);
         frame.getContentPane().add(comboBox);
-        
-        
-        
-        
-        
-     
-  
-        
-        
-        
-        
-        JComboBox<String> comboBox_1 = new JComboBox<String>();
-        comboBox_1.setToolTipText("");
-        comboBox_1.setForeground(Color.BLACK);
-        comboBox_1.setBackground(Color.WHITE);
-        comboBox_1.setBounds(198, 531, 413, 87);
-        frame.getContentPane().add(comboBox_1);
         
         
         comboBox.setUI(new BasicComboBoxUI() {
             @Override
             protected JButton createArrowButton() {
-                return new JButton() {
-                    @Override
-                    public int getWidth() {
-                        return 0;
-                    }
-                };
+                JButton button = new JButton();
+                button.setBorder(BorderFactory.createEmptyBorder());
+                button.setContentAreaFilled(false);
+                button.setFocusPainted(false);
+                button.setIcon(new ImageIcon("arrow_icon.png")); // Substitua pelo ícone da seta desejado
+                return button;
+            }
+
+            @Override
+            protected void installDefaults() {
+                super.installDefaults();
+                LookAndFeel.uninstallBorder(comboBox);
+            }
+
+            @Override
+            public void configureArrowButton() {
+                super.configureArrowButton();
+                arrowButton.setVisible(true);
             }
         });
         
+     
         
+        JComboBox<String> comboBox_1 = new JComboBox<String>();
+        comboBox_1.setToolTipText("");
+        comboBox_1.setForeground(Color.BLACK);
+        comboBox_1.setBackground(Color.WHITE);
+        comboBox_1.setBounds(198, 530, 413, 87);
+        frame.getContentPane().add(comboBox_1);
         
-        
+      
         // deixar em ultimo!!!!!!
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(TelaCadastroVeiculo.class.getResource("/Seguro2.png")));

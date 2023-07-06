@@ -134,20 +134,6 @@ public class TelaDadosSeguro {
         kg.add(rdbtnNao2);
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         // deixar em ultimo!!!!!!
         JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setIcon(new ImageIcon(TelaDadosSeguro.class.getResource("/Seguro.png")));

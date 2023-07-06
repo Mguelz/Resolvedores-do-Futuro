@@ -47,21 +47,17 @@ public class TelaInicial {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-
-		JButton btnNewButton = new JButton("Iniciar Cotação");
-		        btnNewButton.addActionListener(new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                frame.dispose(); // fechar a janela atual
-		            }
-		        });
-		        btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 30));
-		        btnNewButton.setBackground(new Color(0, 51, 51));
-		        btnNewButton.setForeground(Color.WHITE);
-		        btnNewButton.setBounds(161, 516, 365, 103);
-		        frame.getContentPane().add(btnNewButton);
 		
 		
-		
+		JButton btnIniciarCotacao = new JButton("Iniciar Cotação");
+		btnIniciarCotacao.setForeground(Color.WHITE);
+		btnIniciarCotacao.setFont(new Font("SansSerif", Font.PLAIN, 40));
+		btnIniciarCotacao.setFocusPainted(false);
+		btnIniciarCotacao.setBorderPainted(false);
+		btnIniciarCotacao.setBorder(null);
+		btnIniciarCotacao.setBackground(new Color(0, 103, 80));
+		btnIniciarCotacao.setBounds(138, 528, 385, 111);
+		frame.getContentPane().add(btnIniciarCotacao);
 		
 		
 		
@@ -71,8 +67,11 @@ public class TelaInicial {
 		//deixar em ultimo!!!!!!
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaInicial.class.getResource("/TelaInicial2.png")));
-		lblNewLabel.setBounds(10, -62, 1350, 800);
+		lblNewLabel.setBounds(0, -206, 1884, 1092);
 		frame.getContentPane().add(lblNewLabel);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//frame.setLocationRelativeTo(null);
+		
 		
 	}
 }

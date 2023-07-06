@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.fiap.connection.ConnectionFactory;
 import br.com.fiap.model.Apolice;
@@ -90,4 +92,25 @@ public class ApoliceDAO {
 		}
 
 	}
+	public List<Apolice> selectAll() {
+		List<Apolice> apolices = new ArrayList<Apolice>();
+		String sql = "select * from tb_sgr_apolice order by id_apolice";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Apolice apolice = new Apolice();
+				apolice.setIdApolice(rs.getLong("id_apolice"));
+				apolice.setDataEmissao(rs.getDate("dt_apolice"));
+				apolice.setValorSeguro(rs.getDouble("vl_seguro"));
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return apolices;
+
+}
 }//TODO NECESSÁRIO FAZER SELECT ALL

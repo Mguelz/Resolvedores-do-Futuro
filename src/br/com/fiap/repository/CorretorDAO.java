@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.fiap.connection.ConnectionFactory;
 import br.com.fiap.model.Corretor;
+import br.com.fiap.model.Especialidade;
 
 public class CorretorDAO {
 	private Connection conexao;
@@ -17,95 +18,40 @@ public class CorretorDAO {
 		this.conexao = ConnectionFactory.conectar();
 	}
 
-//métodos
-
 	// insert
 	public void insert(Corretor corretor) {
-		String sql = "insert into TB_SGR_CORRETOR (ID_CORRETOR, DS_NOME, DS_ENDERECO) values (?,?,?)";
-
+		String sql = "INSERT INTO sgr_corretor (nr_id, nm_corretor, ds_endereco, ds_celular, sgr_especi_nr_codigo) VALUES (?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
-			// complemento da query
-			stmt.setLong(1, corretor.getIdCorretor());
+			stmt.setInt(1, corretor.getId());
 			stmt.setString(2, corretor.getNome());
 			stmt.setString(3, corretor.getEndereco());
-			// executar a query
-			stmt.execute();
-			stmt.close();
-			// fechar a operação
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	// selectById
-
-	public Corretor selectById(long idCorretor) {
-		Corretor corretor = null;
-		String sql = "select * from TB_SGR_CORRETOR where id_corretor=?";
-
-		try {
-			PreparedStatement stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, idCorretor);
-			ResultSet rs = stmt.executeQuery();
-
-			while (rs.next()) { // enquanto tiver dados na tabela
-				corretor = new Corretor();
-				corretor.setIdCorretor(rs.getLong("id_corretor"));
-				corretor.setNome(rs.getString("ds_nome"));
-				corretor.setEndereco(rs.getString("ds_endereco"));
-			}
-			rs.close();
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return corretor;
-
-	}
-
-	// update
-	public void update(Corretor corretor) {
-		String sql = "update TB_SGR_CORRETOR set DS_NOME=?, DS_ENDERECO=?  where id_corretor=?";
-		try {
-			PreparedStatement stmt = conexao.prepareStatement(sql);
-			stmt.setString(1, corretor.getNome());
-			stmt.setString(2, corretor.getEndereco());
-			stmt.setLong(3, corretor.getIdCorretor());
+			stmt.setString(4, corretor.getCelular());
+			stmt.setInt(5, corretor.getEspecialidade().getCd_especialidade()); // pegando a chave primaria da tabela codigo
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
-	// delete
 
-	public void delete(long IdCorretor) {
-		String sql = "delete from TB_SGR_CORRETOR where id_corretor= ?";
-		try {
-			PreparedStatement stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, IdCorretor);
-			stmt.execute();
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
-	
+	// selectAll
 	public List<Corretor> selectAll() {
-		List<Corretor> corretores = new ArrayList<Corretor>();
-		String sql = "select * from tb_sgr_corretor order by id_corretor";
+		List<Corretor> corretores = new ArrayList<>();
+		String sql = "SELECT * FROM sgr_corretor";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-
 			while (rs.next()) {
 				Corretor corretor = new Corretor();
-				corretor.setIdCorretor(rs.getLong("id_corretor"));
-				corretor.setNome(rs.getString("ds_nome"));
+				corretor.setId(rs.getInt("nr_id"));
+				corretor.setNome(rs.getString("nm_corretor"));
 				corretor.setEndereco(rs.getString("ds_endereco"));
+				corretor.setCelular(rs.getString("ds_celular"));
+				EspecialidadeDAO especialidadeDAO = new EspecialidadeDAO();
+				Especialidade especialidade = especialidadeDAO.selectById(rs.getInt("sgr_especi_nr_codigo"));
+				corretor.setEspecialidade(especialidade);
+				corretores.add(corretor);
 			}
 			rs.close();
 			stmt.close();
@@ -114,4 +60,61 @@ public class CorretorDAO {
 		}
 		return corretores;
 	}
-}//TODO FAZER SELECT ALL
+
+	// selectById
+	public Corretor selectById(int id) {
+		Corretor corretor = null;
+		String sql = "SELECT * FROM sgr_corretor WHERE nr_id = ?";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				corretor = new Corretor();
+				corretor.setId(rs.getInt("nr_id"));
+				corretor.setNome(rs.getString("nm_corretor"));
+				corretor.setEndereco(rs.getString("ds_endereco"));
+				corretor.setCelular(rs.getString("ds_celular"));
+				EspecialidadeDAO especialidadeDAO = new EspecialidadeDAO();
+				Especialidade especialidade = especialidadeDAO.selectById(rs.getInt("sgr_especi_nr_codigo"));
+				corretor.setEspecialidade(especialidade);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return corretor;
+	}
+
+	// update
+	public void update(Corretor corretor) {
+		String sql = "UPDATE sgr_corretor SET nm_corretor = ?, ds_endereco = ?, ds_celular = ?, sgr_especi_nr_codigo = ? WHERE nr_id = ?";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, corretor.getNome());
+			stmt.setString(2, corretor.getEndereco());
+			stmt.setString(3, corretor.getCelular());
+			stmt.setInt(4, corretor.getEspecialidade().getCd_especialidade()); // pegando a chave primaria da tabela codigo
+			stmt.setInt(5, corretor.getId());
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// delete
+	public void delete(int id) {
+		String sql = "DELETE FROM sgr_corretor WHERE nr_id = ?";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

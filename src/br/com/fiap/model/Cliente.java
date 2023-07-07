@@ -3,32 +3,40 @@ package br.com.fiap.model;
 import java.sql.Date;
 
 public class Cliente {
+//	private long cpf;
+//	private int idCorretor;
+//	private Date dataNascimento; // Quando fazer amarração com telas colocar o método Date.ValueOf(String);
+//	private String nome;
+//	private String email;
+//	private String estadoCivil;
+//	private String genero;
+//	private String celular;
+//	private int tempoHabilitacao;
+//	
 	private long cpf;
-	private Date dataNascimento;
-	private String nome;
+	private String nomeCliente;
+	private int corretorId;
+	private Date dataNascimento; // Quando fazer amarração com telas colocar o método Date.ValueOf(String);
 	private String email;
-	private String endereco;
 	private String estadoCivil;
 	private String genero;
-	private String celular;
 	private int tempoHabilitacao;
-
-	public Cliente(long cpf, Date dataNascimento, String nome, String email, String endereco, String estadoCivil,
-			String genero, String celular, int tempoHabilitacao) {
-
-		this.cpf = cpf;
-		this.dataNascimento = dataNascimento; //TODO Quando fazer amarração com telas colocar o método Date.ValueOf(String);
-		this.nome = nome;
-		this.email = email;
-		this.endereco = endereco;
-		this.estadoCivil = estadoCivil;
-		this.genero = genero;
-		this.celular = celular;
-		this.tempoHabilitacao = tempoHabilitacao;
-	}
+	private int dependente;
 
 	public Cliente() {
+	}
 
+	public Cliente(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email, String estadoCivil,
+			String genero, int tempoHabilitacao, int dependente) {
+		this.cpf = cpf;
+		this.nomeCliente = nomeCliente;
+		this.corretorId = corretorId;
+		this.dataNascimento = dataNascimento;
+		this.email = email;
+		this.estadoCivil = estadoCivil;
+		this.genero = genero;
+		this.tempoHabilitacao = tempoHabilitacao;
+		this.dependente = dependente;
 	}
 
 	public long getCpf() {
@@ -39,6 +47,22 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+
+	public int getCorretorId() {
+		return corretorId;
+	}
+
+	public void setCorretorId(int corretorId) {
+		this.corretorId = corretorId;
+	}
+
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -47,28 +71,12 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
 	}
 
 	public String getEstadoCivil() {
@@ -87,20 +95,20 @@ public class Cliente {
 		this.genero = genero;
 	}
 
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-
 	public int getTempoHabilitacao() {
 		return tempoHabilitacao;
 	}
 
 	public void setTempoHabilitacao(int tempoHabilitacao) {
 		this.tempoHabilitacao = tempoHabilitacao;
+	}
+
+	public int getDependente() {
+		return dependente;
+	}
+
+	public void setDependente(int dependente) {
+		this.dependente = dependente;
 	}
 
 }

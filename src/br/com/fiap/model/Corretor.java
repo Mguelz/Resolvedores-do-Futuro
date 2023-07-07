@@ -1,26 +1,30 @@
 package br.com.fiap.model;
 
 public class Corretor {
-	private long idCorretor;
+
+	private int id;
 	private String nome;
 	private String endereco;
-
-	public Corretor(long idCorretor, String nome, String endereco) {
-		this.idCorretor = idCorretor;
-		this.nome = nome;
-		this.endereco = endereco;
-	}
+	private String celular;
+	private Especialidade especialidade;
 
 	public Corretor() {
-
 	}
 
-	public long getIdCorretor() {
-		return idCorretor;
+	public Corretor(int id, String nome, String endereco, String celular, Especialidade especialidade) {
+		this.id = id;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.celular = celular;
+		this.especialidade = especialidade;
 	}
 
-	public void setIdCorretor(long idCorretor) {
-		this.idCorretor = idCorretor;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -38,4 +42,21 @@ public class Corretor {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public Especialidade getEspecialidade() {
+		return especialidade;
+	}
+
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
+	}
+
 }

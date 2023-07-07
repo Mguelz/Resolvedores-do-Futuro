@@ -60,9 +60,12 @@ public class TelaInicial {
 		frame.getContentPane().add(btnIniciarCotacao);
 		
 		
-		
-		
-		
+		btnIniciarCotacao.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		
 		//deixar em ultimo!!!!!!
 		JLabel lblNewLabel = new JLabel("");

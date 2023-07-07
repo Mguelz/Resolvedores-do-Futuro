@@ -10,8 +10,8 @@ public class TestaDAO {
 	public static void main(String[] args) throws SQLException, ParseException {
 		
 		
-		Veiculo carro = new Veiculo("AB12345","placa","kkkkk",true,"2005","fabricante",
-				"combustivel",(byte) 1,true,false,"utilizacao");
+//		Veiculo carro = new Veiculo("AB12345","placa","kkkkk",true,"2005","fabricante",
+//				"combustivel",(byte) 1,true,false,"utilizacao");
 		VeiculoDAO DAO = new VeiculoDAO();
 //		
 //		DAO.insert(carro);

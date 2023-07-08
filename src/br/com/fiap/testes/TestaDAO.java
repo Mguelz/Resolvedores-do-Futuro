@@ -5,9 +5,9 @@ import java.text.ParseException;
 import java.util.List;
 
 import br.com.fiap.controller.ClienteController;
-import br.com.fiap.model.Cliente;
-import br.com.fiap.model.Especialidade;
-import br.com.fiap.model.Veiculo;
+import br.com.fiap.model.ClienteModel;
+import br.com.fiap.model.EspecialidadeModel;
+import br.com.fiap.model.VeiculoModel;
 import br.com.fiap.repository.VeiculoDAO;
 
 public class TestaDAO {
@@ -90,6 +90,8 @@ public class TestaDAO {
 //		for (Especialidade especialidade : especialidades) {
 //			System.out.println(especialidade.getCd_especialidade());
 //		}
+		
+		
 
 	}
 }

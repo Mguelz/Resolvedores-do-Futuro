@@ -1,17 +1,20 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.border.EmptyBorder;
 
 public class TelaDadosSeguro {
 
@@ -73,32 +76,6 @@ public class TelaDadosSeguro {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         JRadioButton rdbtnSim1 = new JRadioButton("");
         rdbtnSim1.setBackground(new Color(0, 103, 80));
         rdbtnSim1.setBounds(648, 424, 90, 64);
@@ -132,16 +109,6 @@ public class TelaDadosSeguro {
         ButtonGroup kg = new ButtonGroup();
         kg.add(rdbtnSim2);
         kg.add(rdbtnNao2);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         

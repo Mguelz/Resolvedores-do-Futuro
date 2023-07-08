@@ -1,6 +1,6 @@
 package br.com.fiap.model;
 
-public class Veiculo {
+public class VeiculoModel {
 	String numeroChassi, placa, modelo;
 	Boolean carroZero;
 	String dataFabricacao, fabricante, combustivel;
@@ -11,7 +11,7 @@ public class Veiculo {
 	double valorPreco;
 	long cpfCliente;
 
-	public Veiculo(String numeroChassi, String placa, String modelo, Boolean carroZero, String dataFabricacao,
+	public VeiculoModel(String numeroChassi, String placa, String modelo, Boolean carroZero, String dataFabricacao,
 			String fabricante, String combustivel, byte garagem, Boolean isencao, Boolean kitgas, String utilizacao,
 			long idCliente, double valorPreco, long cpfCliente) {
 		this.numeroChassi = numeroChassi;
@@ -30,7 +30,7 @@ public class Veiculo {
 		this.cpfCliente = cpfCliente;
 	}
 
-	public Veiculo() {
+	public VeiculoModel() {
 
 	}
 

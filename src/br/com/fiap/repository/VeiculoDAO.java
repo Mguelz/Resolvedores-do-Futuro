@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.connection.ConnectionFactory;
-import br.com.fiap.model.Veiculo;
+import br.com.fiap.model.VeiculoModel;
 
 public class VeiculoDAO {
 	private Connection conexao;
@@ -18,7 +18,7 @@ public class VeiculoDAO {
 	}
 
 	// Insert
-	public void insert(Veiculo veiculo) {
+	public void insert(VeiculoModel veiculo) {
 		String sql = "insert into TB_SGR_VEICULO(DS_CHASSI, DS_PLACA, "
 				+ "DS_MODELO, NR_CARRO_ZERO, DT_FABRICACAO, DS_FABRICACANTE, DS_COMBUSTIVEL,"
 				+ " NR_GARAGEM, BL_ISENCAO, BL_KITGAS, DS_UTILIZACAO,VL_PRECO, SGR_CLIENTE_NR_CPF, SGR_CLIENTE_NR_ID )"
@@ -49,15 +49,15 @@ public class VeiculoDAO {
 	}
 
 	// SelectAll
-	public List<Veiculo> selectAll() {
-		List<Veiculo> veiculos = new ArrayList<Veiculo>();
+	public List<VeiculoModel> selectAll() {
+		List<VeiculoModel> veiculos = new ArrayList<VeiculoModel>();
 		String sql = "select * from TB_SGR_VEICULO order by DS_CHASSI";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Veiculo veiculo = new Veiculo();
+				VeiculoModel veiculo = new VeiculoModel();
 				veiculo.setNumeroChassi(rs.getString("DS_CHASSI"));
 				veiculo.setPlaca(rs.getString("DS_PLACA"));
 				veiculo.setModelo(rs.getString("DS_MODELO"));
@@ -83,15 +83,15 @@ public class VeiculoDAO {
 	}
 
 	// selectByChassis
-	public Veiculo selectByChassis(String chassis) {
-		Veiculo veiculo = null;
+	public VeiculoModel selectByChassis(String chassis) {
+		VeiculoModel veiculo = null;
 		String sql = "select * from TB_SGR_VEICULO where DS_CHASSI= ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, chassis);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				veiculo = new Veiculo();
+				veiculo = new VeiculoModel();
 				veiculo.setNumeroChassi(rs.getString("DS_CHASSI"));
 				veiculo.setPlaca(rs.getString("DS_PLACA"));
 				veiculo.setModelo(rs.getString("DS_MODELO"));
@@ -129,7 +129,7 @@ public class VeiculoDAO {
 	}
 
 	// update
-	public void update(Veiculo veiculo) {
+	public void update(VeiculoModel veiculo) {
 		String sql = "update TB_SGR_VEICULO set DS_PLACA = ?, DS_MODELO = ?, DT_FABRICACAO = ?,"
 				+ " DS_FABRICACANTE = ?, DS_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
 				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ?, VL_PRECO = ?, SGR_CLIENTE_NR_CPF = ?, SGR_CLIENTE_NR_ID = ?  where DS_CHASSI = ?";

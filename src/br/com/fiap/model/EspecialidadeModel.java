@@ -1,13 +1,13 @@
 package br.com.fiap.model;
 
-public class Especialidade {
+public class EspecialidadeModel {
 	private int cd_especialidade;
 	private String nm_especialidade;
 
-	public Especialidade() {
+	public EspecialidadeModel() {
 	}
 
-	public Especialidade(int cd_especialidade, String nome_especialidade) {
+	public EspecialidadeModel(int cd_especialidade, String nome_especialidade) {
 		this.cd_especialidade = cd_especialidade;
 		this.nm_especialidade = nome_especialidade;
 	}

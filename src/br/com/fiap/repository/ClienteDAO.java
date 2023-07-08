@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.connection.ConnectionFactory;
-import br.com.fiap.model.Cliente;
+import br.com.fiap.model.ClienteModel;
 
 public class ClienteDAO {
 	private Connection conexao;
@@ -17,7 +17,7 @@ public class ClienteDAO {
 		this.conexao = ConnectionFactory.conectar();
 	}
 
-	public void insert(Cliente cliente) {
+	public void insert(ClienteModel cliente) {
 		String sql = "insert into sgr_cliente (nr_cpf, nm_cliente, sgr_corretor_nr_id, dt_nascimento, ds_email, ds_estado, ds_genero, nr_tempo, nr_dependente) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -37,15 +37,15 @@ public class ClienteDAO {
 		}
 	}
 
-	public List<Cliente> selectAll() {
-		List<Cliente> clientes = new ArrayList<>();
+	public List<ClienteModel> selectAll() {
+		List<ClienteModel> clientes = new ArrayList<>();
 		String sql = "select * from sgr_cliente";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Cliente cliente = new Cliente();
+				ClienteModel cliente = new ClienteModel();
 				cliente.setCpf(rs.getLong("nr_cpf"));
 				cliente.setNomeCliente(rs.getString("nm_cliente"));
 				cliente.setCorretorId(rs.getInt("sgr_corretor_nr_id"));
@@ -66,8 +66,8 @@ public class ClienteDAO {
 		return clientes;
 	}
 
-	public Cliente selectById(long nr_cpf) {
-		Cliente cliente = null;
+	public ClienteModel selectById(long nr_cpf) {
+		ClienteModel cliente = null;
 		String sql = "select * from sgr_cliente where nr_cpf = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class ClienteDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				cliente = new Cliente();
+				cliente = new ClienteModel();
 				cliente.setCpf(rs.getLong("nr_cpf"));
 				cliente.setNomeCliente(rs.getString("nm_cliente"));
 				cliente.setCorretorId(rs.getInt("sgr_corretor_nr_id"));
@@ -95,7 +95,7 @@ public class ClienteDAO {
 		return cliente;
 	}
 
-	public void update(Cliente cliente) {
+	public void update(ClienteModel cliente) {
 		String sql = "update sgr_cliente set sgr_corretor_nr_id=?, nm_cliente=?, dt_nascimento=?, ds_email=?, ds_estado=?, ds_genero=?, nr_tempo=?, nr_dependente=? where nr_cpf=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);

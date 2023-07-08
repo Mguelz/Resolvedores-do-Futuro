@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.connection.ConnectionFactory;
-import br.com.fiap.model.Especialidade;
+import br.com.fiap.model.EspecialidadeModel;
 
 public class EspecialidadeDAO {
 	private Connection conexao;
@@ -17,8 +17,8 @@ public class EspecialidadeDAO {
 		this.conexao = ConnectionFactory.conectar();
 	}
 
-	public void insert(Especialidade especialidade) {
-		String sql = "insert into tb_sgr_especialidade(cd_especialidade, nm_especialidade) values (?,?)";
+	public void insert(EspecialidadeModel especialidade) {
+		String sql = "insert into tb_sgr_especialidade(nr_codigo, nm_especialidade) values (?,?)";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setInt(1, especialidade.getCd_especialidade());
@@ -30,16 +30,16 @@ public class EspecialidadeDAO {
 		}
 	}
 
-	public List<Especialidade> selectAll() {
-		List<Especialidade> especialidades = new ArrayList<Especialidade>();
-		String sql = "select * from tb_sgr_especialidade order by cd_especialidade";
+	public List<EspecialidadeModel> selectAll() {
+		List<EspecialidadeModel> especialidades = new ArrayList<EspecialidadeModel>();
+		String sql = "select * from tb_sgr_especialidade order by nr_codigo";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Especialidade especialidade = new Especialidade();
-				especialidade.setCd_especialidade(rs.getInt("cd_especialidade"));
+				EspecialidadeModel especialidade = new EspecialidadeModel();
+				especialidade.setCd_especialidade(rs.getInt("nr_codigo"));
 				especialidade.setNm_especialidade(rs.getString("nm_especialidade"));
 				especialidades.add(especialidade);
 			}
@@ -51,16 +51,16 @@ public class EspecialidadeDAO {
 		return especialidades;
 	}
 
-	public Especialidade selectById(int cd_especialidade) {
-		Especialidade especialidade = null;
-		String sql = "select * from tb_sgr_especialidade where cd_especialidade = ?";
+	public EspecialidadeModel selectById(int cd_especialidade) {
+		EspecialidadeModel especialidade = null;
+		String sql = "select * from tb_sgr_especialidade where nr_codigo = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setInt(1, cd_especialidade);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				especialidade = new Especialidade();
-				especialidade.setCd_especialidade(rs.getInt("cd_especialidade"));
+				especialidade = new EspecialidadeModel();
+				especialidade.setCd_especialidade(rs.getInt("nr_codigo"));
 				especialidade.setNm_especialidade(rs.getString("nm_especialidade"));
 			}
 			rs.close();
@@ -72,7 +72,7 @@ public class EspecialidadeDAO {
 	}
 
 	public void delete(int cd_especialidade) {
-		String sql = "delete from tb_sgr_especialidade where cd_especialidade = ?";
+		String sql = "delete from tb_sgr_especialidade where nr_codigo = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, cd_especialidade);
@@ -83,8 +83,8 @@ public class EspecialidadeDAO {
 		}
 	}
 
-	public void update(Especialidade especialidade) {
-		String sql = "update tb_sgr_especialidade set nm_especialidade = ? where cd_especialidade=?";
+	public void update(EspecialidadeModel especialidade) {
+		String sql = "update tb_sgr_especialidade set nm_especialidade = ? where nr_codigo=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, especialidade.getNm_especialidade());

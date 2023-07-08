@@ -1,7 +1,5 @@
 package br.com.fiap.model;
 
-import java.sql.Date;
-
 public class Veiculo {
 	String numeroChassi, placa, modelo;
 	Boolean carroZero;
@@ -9,9 +7,13 @@ public class Veiculo {
 	byte garagem;
 	Boolean isencao, kitgas;
 	String utilizacao;
-	
+	long idCliente;
+	double valorPreco;
+	long cpfCliente;
+
 	public Veiculo(String numeroChassi, String placa, String modelo, Boolean carroZero, String dataFabricacao,
-			String fabricante, String combustivel, byte garagem, Boolean isencao, Boolean kitgas, String utilizacao) {
+			String fabricante, String combustivel, byte garagem, Boolean isencao, Boolean kitgas, String utilizacao,
+			long idCliente, double valorPreco, long cpfCliente) {
 		this.numeroChassi = numeroChassi;
 		this.placa = placa;
 		this.modelo = modelo;
@@ -23,10 +25,13 @@ public class Veiculo {
 		this.isencao = isencao;
 		this.kitgas = kitgas;
 		this.utilizacao = utilizacao;
+		this.idCliente = idCliente;
+		this.valorPreco = valorPreco;
+		this.cpfCliente = cpfCliente;
 	}
 
 	public Veiculo() {
-		
+
 	}
 
 	public String getNumeroChassi() {
@@ -117,6 +122,28 @@ public class Veiculo {
 		this.utilizacao = utilizacao;
 	}
 
-	
-	
+	public long getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(long idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public double getValorPreco() {
+		return valorPreco;
+	}
+
+	public void setValorPreco(double valorPreco) {
+		this.valorPreco = valorPreco;
+	}
+
+	public long getCpfCliente() {
+		return cpfCliente;
+	}
+
+	public void setCpfCliente(long cpfCliente) {
+		this.cpfCliente = cpfCliente;
+	}
+
 }

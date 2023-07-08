@@ -6,13 +6,19 @@ public class Apolice {
 
 	private long idApolice;
 	private Date dataEmissao;
-	private double valorSeguro;
+	private double valorPremio;
+	private String chassi;
+	private long cpfCliente;
+	private long idVeiculo;
 
-	public Apolice(long idApolice, Date dataEmissao, double valorSeguro) {
-
+	public Apolice(long idApolice, Date dataEmissao, double valorPremio, String chassi, long cpfCliente,
+			long idVeiculo) {
 		this.idApolice = idApolice;
-		this.dataEmissao = new Date(System.currentTimeMillis());
-		this.valorSeguro = valorSeguro;
+		this.dataEmissao = dataEmissao;
+		this.valorPremio = valorPremio;
+		this.chassi = chassi;
+		this.cpfCliente = cpfCliente;
+		this.idVeiculo = idVeiculo;
 	}
 
 	public Apolice() {
@@ -35,11 +41,36 @@ public class Apolice {
 		this.dataEmissao = dataEmissao;
 	}
 
-	public double getValorSeguro() {
-		return valorSeguro;
+	public double getValorPremio() {
+		return valorPremio;
 	}
 
-	public void setValorSeguro(double valorSeguro) {
-		this.valorSeguro = valorSeguro;
+	public void setValorPremio(double valorPremio) {
+		this.valorPremio = valorPremio;
 	}
+
+	public String getChassi() {
+		return chassi;
+	}
+
+	public void setChassi(String chassi) {
+		this.chassi = chassi;
+	}
+
+	public long getCpfCliente() {
+		return cpfCliente;
+	}
+
+	public void setCpfCliente(long cpfCliente) {
+		this.cpfCliente = cpfCliente;
+	}
+
+	public long getIdVeiculo() {
+		return idVeiculo;
+	}
+
+	public void setIdVeiculo(long idVeiculo) {
+		this.idVeiculo = idVeiculo;
+	}
+
 }

@@ -12,36 +12,43 @@ import br.com.fiap.model.Veiculo;
 
 public class VeiculoDAO {
 	private Connection conexao;
+
 	public VeiculoDAO() throws SQLException {
 		this.conexao = ConnectionFactory.conectar();
 	}
-	//Insert
+
+	// Insert
 	public void insert(Veiculo veiculo) {
 		String sql = "insert into TB_SGR_VEICULO(DS_CHASSI, DS_PLACA, "
 				+ "DS_MODELO, NR_CARRO_ZERO, DT_FABRICACAO, DS_FABRICACANTE, DS_COMBUSTIVEL,"
-				+ " NR_GARAGEM, BL_ISENCAO, BL_KITGAS, DS_UTILIZACAO )"
-				+ " values (?,?,?,?,?,?,?,?,?,?,?)";
+				+ " NR_GARAGEM, BL_ISENCAO, BL_KITGAS, DS_UTILIZACAO,VL_PRECO, SGR_CLIENTE_NR_CPF, SGR_CLIENTE_NR_ID )"
+				+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
-			
-			stmt.setString(1,veiculo.getNumeroChassi());
+
+			stmt.setString(1, veiculo.getNumeroChassi());
 			stmt.setString(2, veiculo.getPlaca());
 			stmt.setString(3, veiculo.getModelo());
 			stmt.setBoolean(4, veiculo.getCarroZero());
 			stmt.setString(5, veiculo.getDataFabricacao());
 			stmt.setString(6, veiculo.getFabricante());
 			stmt.setString(7, veiculo.getCombustivel());
-			stmt.setByte(8,veiculo.getGaragem());
+			stmt.setByte(8, veiculo.getGaragem());
 			stmt.setBoolean(9, veiculo.getIsencao());
 			stmt.setBoolean(10, veiculo.getKitgas());
 			stmt.setString(11, veiculo.getUtilizacao());
+			stmt.setDouble(12, veiculo.getValorPreco());
+			stmt.setLong(13, veiculo.getCpfCliente());
+			stmt.setLong(14, veiculo.getIdCliente());
+
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	//SelectAll
+
+	// SelectAll
 	public List<Veiculo> selectAll() {
 		List<Veiculo> veiculos = new ArrayList<Veiculo>();
 		String sql = "select * from TB_SGR_VEICULO order by DS_CHASSI";
@@ -61,7 +68,10 @@ public class VeiculoDAO {
 				veiculo.setIsencao(rs.getBoolean("BL_ISENCAO"));
 				veiculo.setKitgas(rs.getBoolean("BL_KITGAS"));
 				veiculo.setUtilizacao(rs.getString("DS_UTILIZACAO"));
-				
+				veiculo.setValorPreco(rs.getDouble("VL_PRECO"));
+				veiculo.setCpfCliente(rs.getLong("SGR_CLIENTE_NR_CPF"));
+				veiculo.setIdCliente(rs.getLong("SGR_CLIENTE_NR_ID"));
+
 				veiculos.add(veiculo);
 			}
 			rs.close();
@@ -71,7 +81,8 @@ public class VeiculoDAO {
 		}
 		return veiculos;
 	}
-	//selectByChassis
+
+	// selectByChassis
 	public Veiculo selectByChassis(String chassis) {
 		Veiculo veiculo = null;
 		String sql = "select * from TB_SGR_VEICULO where DS_CHASSI= ?";
@@ -91,6 +102,10 @@ public class VeiculoDAO {
 				veiculo.setIsencao(rs.getBoolean("BL_ISENCAO"));
 				veiculo.setKitgas(rs.getBoolean("BL_KITGAS"));
 				veiculo.setUtilizacao(rs.getString("DS_UTILIZACAO"));
+				veiculo.setValorPreco(rs.getDouble("VL_PRECO"));
+				veiculo.setCpfCliente(rs.getLong("SGR_CLIENTE_NR_CPF"));
+				veiculo.setIdCliente(rs.getLong("SGR_CLIENTE_NR_ID"));
+
 			}
 			rs.close();
 			stmt.close();
@@ -99,7 +114,8 @@ public class VeiculoDAO {
 		}
 		return veiculo;
 	}
-	//delete
+
+	// delete
 	public void delete(String chassis) {
 		String sql = "delete from TB_SGR_VEICULO where DS_CHASSI=?";
 		try {
@@ -111,11 +127,12 @@ public class VeiculoDAO {
 			e.printStackTrace();
 		}
 	}
-	//update
+
+	// update
 	public void update(Veiculo veiculo) {
 		String sql = "update TB_SGR_VEICULO set DS_PLACA = ?, DS_MODELO = ?, DT_FABRICACAO = ?,"
 				+ " DS_FABRICACANTE = ?, DS_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
-				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ? where DS_CHASSI = ?";
+				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ?, VL_PRECO = ?, SGR_CLIENTE_NR_CPF = ?, SGR_CLIENTE_NR_ID = ?  where DS_CHASSI = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, veiculo.getPlaca());
@@ -128,7 +145,9 @@ public class VeiculoDAO {
 			stmt.setBoolean(8, veiculo.getKitgas());
 			stmt.setString(9, veiculo.getUtilizacao());
 			stmt.setString(10, veiculo.getNumeroChassi());
-			
+			stmt.setDouble(12, veiculo.getValorPreco());
+			stmt.setLong(13, veiculo.getCpfCliente());
+			stmt.setLong(14, veiculo.getIdCliente());
 
 			stmt.execute();
 			stmt.close();

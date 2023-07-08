@@ -2,20 +2,25 @@ package br.com.fiap.testes;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 
+import br.com.fiap.controller.ClienteController;
+import br.com.fiap.model.Cliente;
+import br.com.fiap.model.Especialidade;
 import br.com.fiap.model.Veiculo;
 import br.com.fiap.repository.VeiculoDAO;
 
 public class TestaDAO {
 	public static void main(String[] args) throws SQLException, ParseException {
-		
-		
-		Veiculo carro = new Veiculo("AB12345","placa","kkkkk",true,"2005","fabricante",
-				"combustivel",(byte) 1,true,false,"utilizacao");
-		VeiculoDAO DAO = new VeiculoDAO();
+
+//		ApoliceController ac = new ApoliceController();
+//		Veiculo carro = new Veiculo("AB12345", "placa", "kkkkk", true, "2005", "fabricante", "combustivel", (byte) 1,
+//				true, false, "utilizacao");
+//		VeiculoDAO DAO = new VeiculoDAO();
 //		
 //		DAO.insert(carro);
-		System.out.println(DAO.selectByChassis("AB12345").getNumeroChassi());
+//		System.out.println(DAO.selectByChassis("AB12345").getNumeroChassi());
+		// ac.sellectById(1);
 ////		DAO.update(carro);
 //		
 //		List<Veiculo> veiculos = DAO.selectAll();
@@ -24,7 +29,7 @@ public class TestaDAO {
 //				System.out.println(veiculo.getPlaca());
 //			}		
 //		DAO.delete("AB12345");
-		
+
 //		Fipe fipe = new Fipe(1,12000,"MARCA","modelo","2015");
 //		FipeDAO daoF = new FipeDAO();
 //		
@@ -49,14 +54,13 @@ public class TestaDAO {
 //	        Cliente cliente = new Cliente(cpf, dataNascimento, nome, email, endereco, estadoCivil, genero, celular, tempoHabilitacao);
 //	        ClienteDAO cd1 = new ClienteDAO();
 ////        cd1.insert(cliente);
-////	        List <Cliente> clientes = cd1.selectAll();
-////	        for (Cliente cliente2 : clientes) {
-////				System.out.println(cliente2.getCpf());
-////			}
+//	        List <Cliente> clientes = cd1.selectAll();
+//	        for (Cliente cliente2 : clientes) {
+//				System.out.println(cliente2.getCpf());
+//			}
 //	        
 //	       cd1.delete(cpf);
-		
-		
+
 //		Apolice ap = new Apolice(1, Date.valueOf("1990-10-10"), 12321 );
 //		ApoliceDAO  apDAO= new ApoliceDAO();
 //		
@@ -64,14 +68,13 @@ public class TestaDAO {
 ////		System.out.println(apDAO.selectById(1));
 //		apDAO.delete(1);
 //		
-		
+
 //		Corretor c1 = new Corretor(1, "O corretas", "Rua do limoeiro");
 //		CorretorDAO cDAO = new CorretorDAO();
 ////		cDAO.insert(c1);
 //	System.out.println(cDAO.selectById(1));
 //		cDAO.delete(1);
-		
-		
+
 //		Especialidade espec1 = new Especialidade(1, "Carro");
 //		EspecialidadeDAO esDAO = new EspecialidadeDAO();
 //		esDAO.insert(espec1);
@@ -81,5 +84,12 @@ public class TestaDAO {
 //			System.out.println(especialidade.getCd_especialidade());
 //		}
 //		esDAO.delete(1);
+
+//		Especialidade especialidade = new Especialidade(1, "Carro");
+//		List<Cliente> cliente = esDAO.selectAll();
+//		for (Especialidade especialidade : especialidades) {
+//			System.out.println(especialidade.getCd_especialidade());
+//		}
+
 	}
 }

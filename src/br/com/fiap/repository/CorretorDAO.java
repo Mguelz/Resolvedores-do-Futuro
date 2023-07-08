@@ -27,7 +27,7 @@ public class CorretorDAO {
 			stmt.setString(2, corretor.getNome());
 			stmt.setString(3, corretor.getEndereco());
 			stmt.setString(4, corretor.getCelular());
-			stmt.setInt(5, corretor.getEspecialidade().getCd_especialidade()); // pegando a chave primaria da tabela codigo
+			stmt.setInt(5, corretor.getEspecialidade().getNr_codigo()); // pegando a chave primaria da tabela especialidade
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -95,7 +95,7 @@ public class CorretorDAO {
 			stmt.setString(1, corretor.getNome());
 			stmt.setString(2, corretor.getEndereco());
 			stmt.setString(3, corretor.getCelular());
-			stmt.setInt(4, corretor.getEspecialidade().getCd_especialidade()); // pegando a chave primaria da tabela codigo
+			stmt.setInt(4, corretor.getEspecialidade().getNr_codigo()); // pegando a chave primaria da tabela especialidade 
 			stmt.setInt(5, corretor.getId());
 			stmt.execute();
 			stmt.close();

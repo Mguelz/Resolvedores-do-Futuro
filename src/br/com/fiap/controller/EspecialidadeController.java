@@ -25,15 +25,15 @@ public class EspecialidadeController {
 		especialidadeDAO.update(especialidade);
 	}
 
-	public void excluirEspecialidade(int cdEspecialidade) {
-		especialidadeDAO.delete(cdEspecialidade);
+	public void excluirEspecialidade(int nrEspecialidade) {
+		especialidadeDAO.delete(nrEspecialidade);
 	}
 
-	public List<EspecialidadeModel> listarEspecialidades() {
+	public List<EspecialidadeModel> listarTodasEspecialidades() {
 		return especialidadeDAO.selectAll();
 	}
 
-	public EspecialidadeModel buscarEspecialidadePorId(int cdEspecialidade) {
-		return especialidadeDAO.selectById(cdEspecialidade);
+	public EspecialidadeModel buscarEspecialidadePorId(int nrEspecialidade) {
+		return especialidadeDAO.selectById(nrEspecialidade);
 	}
 }

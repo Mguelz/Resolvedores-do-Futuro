@@ -19,7 +19,7 @@ public class VeiculoDAO {
 
 	// Insert
 	public void insert(VeiculoModel veiculo) {
-		String sql = "insert into TB_SGR_VEICULO(DS_CHASSI, DS_PLACA, "
+		String sql = "insert into SGR_VEICULO(DS_CHASSI, DS_PLACA, "
 				+ "DS_MODELO, NR_CARRO_ZERO, DT_FABRICACAO, DS_FABRICACANTE, DS_COMBUSTIVEL,"
 				+ " NR_GARAGEM, BL_ISENCAO, BL_KITGAS, DS_UTILIZACAO,VL_PRECO, SGR_CLIENTE_NR_CPF, SGR_CLIENTE_NR_ID )"
 				+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -40,7 +40,6 @@ public class VeiculoDAO {
 			stmt.setDouble(12, veiculo.getValorPreco());
 			stmt.setLong(13, veiculo.getCpfCliente());
 			stmt.setLong(14, veiculo.getIdCliente());
-
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -51,7 +50,7 @@ public class VeiculoDAO {
 	// SelectAll
 	public List<VeiculoModel> selectAll() {
 		List<VeiculoModel> veiculos = new ArrayList<VeiculoModel>();
-		String sql = "select * from TB_SGR_VEICULO order by DS_CHASSI";
+		String sql = "select * from SGR_VEICULO order by DS_CHASSI";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
@@ -60,17 +59,18 @@ public class VeiculoDAO {
 				VeiculoModel veiculo = new VeiculoModel();
 				veiculo.setNumeroChassi(rs.getString("DS_CHASSI"));
 				veiculo.setPlaca(rs.getString("DS_PLACA"));
-				veiculo.setModelo(rs.getString("DS_MODELO"));
+				veiculo.setModelo(rs.getString("NM_MODELO"));
+				veiculo.setCarroZero(rs.getBoolean("BL_CARROZERO"));
 				veiculo.setDataFabricacao(rs.getString("DT_FABRICACAO"));
-				veiculo.setFabricante(rs.getString("DS_FABRICACANTE"));
-				veiculo.setCombustivel(rs.getString("DS_COMBUSTIVEL"));
+				veiculo.setFabricante(rs.getString("NM_FABRICACANTE"));
+				veiculo.setCombustivel(rs.getString("NM_COMBUSTIVEL"));
 				veiculo.setGaragem(rs.getByte("NR_GARAGEM"));
 				veiculo.setIsencao(rs.getBoolean("BL_ISENCAO"));
 				veiculo.setKitgas(rs.getBoolean("BL_KITGAS"));
 				veiculo.setUtilizacao(rs.getString("DS_UTILIZACAO"));
-				veiculo.setValorPreco(rs.getDouble("VL_PRECO"));
 				veiculo.setCpfCliente(rs.getLong("SGR_CLIENTE_NR_CPF"));
 				veiculo.setIdCliente(rs.getLong("SGR_CLIENTE_NR_ID"));
+				veiculo.setValorPreco(rs.getDouble("VL_PRECO"));
 
 				veiculos.add(veiculo);
 			}
@@ -82,10 +82,10 @@ public class VeiculoDAO {
 		return veiculos;
 	}
 
-	// selectByChassis
-	public VeiculoModel selectByChassis(String chassis) {
+	// selectByChassi
+	public VeiculoModel selectByChassi(String chassis) {
 		VeiculoModel veiculo = null;
-		String sql = "select * from TB_SGR_VEICULO where DS_CHASSI= ?";
+		String sql = "select * from SGR_VEICULO where DS_CHASSI= ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, chassis);
@@ -117,7 +117,7 @@ public class VeiculoDAO {
 
 	// delete
 	public void delete(String chassis) {
-		String sql = "delete from TB_SGR_VEICULO where DS_CHASSI=?";
+		String sql = "delete from SGR_VEICULO where DS_CHASSI=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, chassis);
@@ -130,25 +130,28 @@ public class VeiculoDAO {
 
 	// update
 	public void update(VeiculoModel veiculo) {
-		String sql = "update TB_SGR_VEICULO set DS_PLACA = ?, DS_MODELO = ?, DT_FABRICACAO = ?,"
-				+ " DS_FABRICACANTE = ?, DS_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
-				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ?, VL_PRECO = ?, SGR_CLIENTE_NR_CPF = ?, SGR_CLIENTE_NR_ID = ?  where DS_CHASSI = ?";
+		String sql = "update SGR_VEICULO set DS_PLACA = ?, NM_MODELO = ?, BL_CARROZERO = ?,"
+				+ " DT_FABRICACAO = ?,DS_FABRICANTE, DS_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
+				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ?, SGR_CLIENTE_NR_CPF = ?, SGR_CLIENTE_NR_ID = ?, VL_PRECO = ?,  where DS_CHASSI = ?";
+//		String sql = "update SGR_VEICULO set DS_PLACA = ?, DS_MODELO = ?, DT_FABRICACAO = ?,"
+//				+ " DS_FABRICACANTE = ?, DS_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
+//				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ?, VL_PRECO = ?, SGR_CLIENTE_NR_CPF = ?, SGR_CLIENTE_NR_ID = ?  where DS_CHASSI = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, veiculo.getPlaca());
 			stmt.setString(2, veiculo.getModelo());
-			stmt.setString(3, veiculo.getDataFabricacao());
-			stmt.setString(4, veiculo.getFabricante());
-			stmt.setString(5, veiculo.getCombustivel());
-			stmt.setLong(6, veiculo.getGaragem());
-			stmt.setBoolean(7, veiculo.getIsencao());
-			stmt.setBoolean(8, veiculo.getKitgas());
-			stmt.setString(9, veiculo.getUtilizacao());
-			stmt.setString(10, veiculo.getNumeroChassi());
-			stmt.setDouble(12, veiculo.getValorPreco());
-			stmt.setLong(13, veiculo.getCpfCliente());
-			stmt.setLong(14, veiculo.getIdCliente());
-
+			stmt.setBoolean(3, veiculo.getCarroZero());
+			stmt.setString(4, veiculo.getDataFabricacao());
+			stmt.setString(5, veiculo.getFabricante());
+			stmt.setString(6, veiculo.getCombustivel());
+			stmt.setLong(7, veiculo.getGaragem());
+			stmt.setBoolean(8, veiculo.getIsencao());
+			stmt.setBoolean(9, veiculo.getKitgas());
+			stmt.setString(10, veiculo.getUtilizacao());
+			stmt.setLong(11, veiculo.getCpfCliente());
+			stmt.setLong(12, veiculo.getIdCliente());
+			stmt.setDouble(13, veiculo.getValorPreco());
+			stmt.setString(14, veiculo.getNumeroChassi());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {

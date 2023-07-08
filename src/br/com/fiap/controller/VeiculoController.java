@@ -34,6 +34,6 @@ public class VeiculoController {
     }
 
     public VeiculoModel buscarVeiculoPorChassi(String chassi) {
-        return veiculoDAO.selectByChassis(chassi);
+        return veiculoDAO.selectByChassi(chassi);
     }
 }

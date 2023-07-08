@@ -18,10 +18,10 @@ public class EspecialidadeDAO {
 	}
 
 	public void insert(EspecialidadeModel especialidade) {
-		String sql = "insert into tb_sgr_especialidade(nr_codigo, nm_especialidade) values (?,?)";
+		String sql = "insert into sgr_especi(nr_codigo, nm_especialidade) values (?,?)";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
-			stmt.setInt(1, especialidade.getCd_especialidade());
+			stmt.setInt(1, especialidade.getNr_codigo());
 			stmt.setString(2, especialidade.getNm_especialidade());
 			stmt.execute();
 			stmt.close();
@@ -32,14 +32,14 @@ public class EspecialidadeDAO {
 
 	public List<EspecialidadeModel> selectAll() {
 		List<EspecialidadeModel> especialidades = new ArrayList<EspecialidadeModel>();
-		String sql = "select * from tb_sgr_especialidade order by nr_codigo";
+		String sql = "select * from sgr_especi order by nr_codigo";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				EspecialidadeModel especialidade = new EspecialidadeModel();
-				especialidade.setCd_especialidade(rs.getInt("nr_codigo"));
+				especialidade.setNr_codigo(rs.getInt("nr_codigo"));
 				especialidade.setNm_especialidade(rs.getString("nm_especialidade"));
 				especialidades.add(especialidade);
 			}
@@ -51,16 +51,16 @@ public class EspecialidadeDAO {
 		return especialidades;
 	}
 
-	public EspecialidadeModel selectById(int cd_especialidade) {
+	public EspecialidadeModel selectById(int nr_especialidade) {
 		EspecialidadeModel especialidade = null;
-		String sql = "select * from tb_sgr_especialidade where nr_codigo = ?";
+		String sql = "select * from sgr_especi where nr_codigo = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
-			stmt.setInt(1, cd_especialidade);
+			stmt.setInt(1, nr_especialidade);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				especialidade = new EspecialidadeModel();
-				especialidade.setCd_especialidade(rs.getInt("nr_codigo"));
+				especialidade.setNr_codigo(rs.getInt("nr_codigo"));
 				especialidade.setNm_especialidade(rs.getString("nm_especialidade"));
 			}
 			rs.close();
@@ -71,11 +71,11 @@ public class EspecialidadeDAO {
 		return especialidade;
 	}
 
-	public void delete(int cd_especialidade) {
-		String sql = "delete from tb_sgr_especialidade where nr_codigo = ?";
+	public void delete(int nr_especialidade) {
+		String sql = "delete from sgr_especi where nr_codigo = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, cd_especialidade);
+			stmt.setLong(1, nr_especialidade);
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -84,11 +84,11 @@ public class EspecialidadeDAO {
 	}
 
 	public void update(EspecialidadeModel especialidade) {
-		String sql = "update tb_sgr_especialidade set nm_especialidade = ? where nr_codigo=?";
+		String sql = "update sgr_especi set nm_especialidade = ? where nr_codigo=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, especialidade.getNm_especialidade());
-			stmt.setLong(2, especialidade.getCd_especialidade());
+			stmt.setLong(2, especialidade.getNr_codigo());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {

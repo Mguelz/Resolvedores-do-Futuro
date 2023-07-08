@@ -3,7 +3,7 @@ package br.com.fiap.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.model.VeiculoModel;
+import br.com.fiap.model.Veiculo;
 import br.com.fiap.repository.VeiculoDAO;
 
 public class VeiculoController {
@@ -17,11 +17,11 @@ public class VeiculoController {
         }
     }
 
-    public void cadastrarVeiculo(VeiculoModel veiculo) {
+    public void cadastrarVeiculo(Veiculo veiculo) {
         veiculoDAO.insert(veiculo);
     }
 
-    public void atualizarVeiculo(VeiculoModel veiculo) {
+    public void atualizarVeiculo(Veiculo veiculo) {
         veiculoDAO.update(veiculo);
     }
 
@@ -29,11 +29,11 @@ public class VeiculoController {
         veiculoDAO.delete(chassi);
     }
 
-    public List<VeiculoModel> listarVeiculos() {
+    public List<Veiculo> listarVeiculos() {
         return veiculoDAO.selectAll();
     }
 
-    public VeiculoModel buscarVeiculoPorChassi(String chassi) {
-        return veiculoDAO.selectByChassi(chassi);
+    public Veiculo buscarVeiculoPorChassi(String chassi) {
+        return veiculoDAO.selectByChassis(chassi);
     }
 }

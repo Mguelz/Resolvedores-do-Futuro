@@ -2,7 +2,7 @@ package br.com.fiap.model;
 
 import java.sql.Date;
 
-public class ClienteModel {
+public class Cliente {
 //	private long cpf;
 //	private int idCorretor;
 //	private Date dataNascimento; // Quando fazer amarração com telas colocar o método Date.ValueOf(String);
@@ -23,10 +23,10 @@ public class ClienteModel {
 	private int tempoHabilitacao;
 	private int dependente;
 
-	public ClienteModel() {
+	public Cliente() {
 	}
 
-	public ClienteModel(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email, String estadoCivil,
+	public Cliente(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email, String estadoCivil,
 			String genero, int tempoHabilitacao, int dependente) {
 		this.cpf = cpf;
 		this.nomeCliente = nomeCliente;

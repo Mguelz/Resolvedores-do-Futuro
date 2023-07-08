@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fiap.connection.ConnectionFactory;
-import br.com.fiap.model.ApoliceModel;
+import br.com.fiap.model.Apolice;
 
 public class ApoliceDAO {
 	private Connection conexao;
@@ -18,7 +18,7 @@ public class ApoliceDAO {
 	}
 
 	// insert
-	public void insert(ApoliceModel apolice) {
+	public void insert(Apolice apolice) {
 		String sql = "insert into SGR_APOLICE (ID_APOLICE, DT_EMISSAO, VL_PREMIO, SGR_VEICULO_DS_CHASSI, SGR_VEICULO_SGR_CLIENTE_NR_CPF, SGR_VEICULO_SGR_CLIENTE_NR_ID ) values (?,?,?,?,?,?)";
 
 		try {
@@ -42,8 +42,8 @@ public class ApoliceDAO {
 
 	// selectById
 
-	public ApoliceModel selectById(long idApolice) {
-		ApoliceModel apolice = null;
+	public Apolice selectById(long idApolice) {
+		Apolice apolice = null;
 		String sql = "select * from TB_SGR_APOLICE where id_apolice=?";
 
 		try {
@@ -52,7 +52,7 @@ public class ApoliceDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) { // enquanto tiver dados na tabela
-				apolice = new ApoliceModel();
+				apolice = new Apolice();
 				apolice.setIdApolice(rs.getLong("id_apolice"));
 				apolice.setDataEmissao(rs.getDate("dt_emissao"));
 				apolice.setValorPremio(rs.getDouble("vl_premio"));
@@ -69,7 +69,7 @@ public class ApoliceDAO {
 	}
 
 	// update
-	public void update(ApoliceModel apolice) {
+	public void update(Apolice apolice) {
 		String sql = "update TB_SGR_APOLICE set DT_EMISSAO=?, VL_PREMIO=?, SGR_VEICULO_SGR_CLIENTE_NR_CPF=?, SGR_VEICULO_SGR_CLIENTE_NR_ID=?  where id_apolice=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -100,15 +100,15 @@ public class ApoliceDAO {
 		}
 
 	}
-	public List<ApoliceModel> selectAll() {
-		List<ApoliceModel> apolices = new ArrayList<ApoliceModel>();
+	public List<Apolice> selectAll() {
+		List<Apolice> apolices = new ArrayList<Apolice>();
 		String sql = "select * from sgr_apolice order by id_apolice";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				ApoliceModel apolice = new ApoliceModel();
+				Apolice apolice = new Apolice();
 				apolice.setIdApolice(rs.getLong("id_apolice"));
 				apolice.setDataEmissao(rs.getDate("dt_apolice"));
 				apolice.setValorPremio(rs.getDouble("vl_seguro"));

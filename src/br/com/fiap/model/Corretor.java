@@ -1,17 +1,17 @@
 package br.com.fiap.model;
 
-public class CorretorModel {
+public class Corretor {
 
 	private int id;
 	private String nome;
 	private String endereco;
 	private String celular;
-	private EspecialidadeModel especialidade;
+	private Especialidade especialidade;
 
-	public CorretorModel() {
+	public Corretor() {
 	}
 
-	public CorretorModel(int id, String nome, String endereco, String celular, EspecialidadeModel especialidade) {
+	public Corretor(int id, String nome, String endereco, String celular, Especialidade especialidade) {
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
@@ -51,11 +51,11 @@ public class CorretorModel {
 		this.celular = celular;
 	}
 
-	public EspecialidadeModel getEspecialidade() {
+	public Especialidade getEspecialidade() {
 		return especialidade;
 	}
 
-	public void setEspecialidade(EspecialidadeModel especialidade) {
+	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
 	}
 

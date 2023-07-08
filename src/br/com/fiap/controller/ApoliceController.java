@@ -3,7 +3,7 @@ package br.com.fiap.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.model.ApoliceModel;
+import br.com.fiap.model.Apolice;
 import br.com.fiap.repository.ApoliceDAO;
 
 public class ApoliceController {
@@ -13,15 +13,15 @@ public class ApoliceController {
         apoliceDAO = new ApoliceDAO();
     }
 
-    public void inserirApolice(ApoliceModel apolice) {
+    public void inserirApolice(Apolice apolice) {
         apoliceDAO.insert(apolice);
     }
 
-    public ApoliceModel sellectById(long idApolice) {
+    public Apolice sellectById(long idApolice) {
         return apoliceDAO.selectById(idApolice);
     }
 
-    public void atualizarApolice(ApoliceModel apolice) {
+    public void atualizarApolice(Apolice apolice) {
         apoliceDAO.update(apolice);
     }
 
@@ -29,7 +29,7 @@ public class ApoliceController {
         apoliceDAO.delete(idApolice);
     }
 
-    public List<ApoliceModel> buscarTodasApolices() {
+    public List<Apolice> buscarTodasApolices() {
         return apoliceDAO.selectAll();
     }
 }

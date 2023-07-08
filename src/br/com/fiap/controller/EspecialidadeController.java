@@ -3,7 +3,7 @@ package br.com.fiap.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.model.EspecialidadeModel;
+import br.com.fiap.model.Especialidade;
 import br.com.fiap.repository.EspecialidadeDAO;
 
 public class EspecialidadeController {
@@ -17,23 +17,23 @@ public class EspecialidadeController {
 		}
 	}
 
-	public void cadastrarEspecialidade(EspecialidadeModel especialidade) {
+	public void cadastrarEspecialidade(Especialidade especialidade) {
 		especialidadeDAO.insert(especialidade);
 	}
 
-	public void atualizarEspecialidade(EspecialidadeModel especialidade) {
+	public void atualizarEspecialidade(Especialidade especialidade) {
 		especialidadeDAO.update(especialidade);
 	}
 
-	public void excluirEspecialidade(int nrEspecialidade) {
-		especialidadeDAO.delete(nrEspecialidade);
+	public void excluirEspecialidade(int cdEspecialidade) {
+		especialidadeDAO.delete(cdEspecialidade);
 	}
 
-	public List<EspecialidadeModel> listarTodasEspecialidades() {
+	public List<Especialidade> listarEspecialidades() {
 		return especialidadeDAO.selectAll();
 	}
 
-	public EspecialidadeModel buscarEspecialidadePorId(int nrEspecialidade) {
-		return especialidadeDAO.selectById(nrEspecialidade);
+	public Especialidade buscarEspecialidadePorId(int cdEspecialidade) {
+		return especialidadeDAO.selectById(cdEspecialidade);
 	}
 }

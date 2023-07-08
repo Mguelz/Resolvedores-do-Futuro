@@ -2,7 +2,7 @@ package br.com.fiap.model;
 
 import java.sql.Date;
 
-public class ApoliceModel {
+public class Apolice {
 
 	private long idApolice;
 	private Date dataEmissao;
@@ -11,7 +11,7 @@ public class ApoliceModel {
 	private long cpfCliente;
 	private long idVeiculo;
 
-	public ApoliceModel(long idApolice, Date dataEmissao, double valorPremio, String chassi, long cpfCliente,
+	public Apolice(long idApolice, Date dataEmissao, double valorPremio, String chassi, long cpfCliente,
 			long idVeiculo) {
 		this.idApolice = idApolice;
 		this.dataEmissao = dataEmissao;
@@ -21,7 +21,7 @@ public class ApoliceModel {
 		this.idVeiculo = idVeiculo;
 	}
 
-	public ApoliceModel() {
+	public Apolice() {
 
 	}
 

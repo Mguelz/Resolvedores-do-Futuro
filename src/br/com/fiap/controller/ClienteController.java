@@ -3,7 +3,7 @@ package br.com.fiap.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.model.ClienteModel;
+import br.com.fiap.model.Cliente;
 import br.com.fiap.repository.ClienteDAO;
 
 public class ClienteController {
@@ -17,11 +17,11 @@ public class ClienteController {
 		}
 	}
 
-	public void cadastrarCliente(ClienteModel cliente) {
+	public void cadastrarCliente(Cliente cliente) {
 		clienteDAO.insert(cliente);
 	}
 
-	public void atualizarCliente(ClienteModel cliente) {
+	public void atualizarCliente(Cliente cliente) {
 		clienteDAO.update(cliente);
 	}
 
@@ -29,11 +29,11 @@ public class ClienteController {
 		clienteDAO.delete(cpf);
 	}
 
-	public List<ClienteModel> listarTodosClientes() {
+	public List<Cliente> listarTodosClientes() {
 		return clienteDAO.selectAll();
 	}
 
-	public ClienteModel buscarPorCPF(long cpf) {
+	public Cliente buscarPorCPF(long cpf) {
 		return clienteDAO.selectById(cpf);
 	}
 }

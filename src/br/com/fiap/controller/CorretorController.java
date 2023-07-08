@@ -3,7 +3,7 @@ package br.com.fiap.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import br.com.fiap.model.CorretorModel;
+import br.com.fiap.model.Corretor;
 import br.com.fiap.repository.CorretorDAO;
 
 public class CorretorController {
@@ -17,11 +17,11 @@ public class CorretorController {
 		}
 	}
 
-	public void cadastrarCorretor(CorretorModel corretor) {
+	public void cadastrarCorretor(Corretor corretor) {
 		corretorDAO.insert(corretor);
 	}
 
-	public void atualizarCorretor(CorretorModel corretor) {
+	public void atualizarCorretor(Corretor corretor) {
 		corretorDAO.update(corretor);
 	}
 
@@ -29,11 +29,11 @@ public class CorretorController {
 		corretorDAO.delete(id);
 	}
 
-	public List<CorretorModel> listarCorretores() {
+	public List<Corretor> listarCorretores() {
 		return corretorDAO.selectAll();
 	}
 
-	public CorretorModel buscarCorretorPorId(int id) {
+	public Corretor buscarCorretorPorId(int id) {
 		return corretorDAO.selectById(id);
 	}
 }

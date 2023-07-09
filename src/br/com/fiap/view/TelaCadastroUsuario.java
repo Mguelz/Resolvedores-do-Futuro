@@ -55,8 +55,10 @@ public class TelaCadastroUsuario {
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
 		JComboBox<String> comboRegiao = new JComboBox<>();
+		comboRegiao.setEditable(true);
 		comboRegiao.setFont(new Font("Tahoma", Font.PLAIN, 30));
 
+		comboRegiao.setSelectedItem("Selecione o estado"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 		comboRegiao.addItem("Acre");
 		comboRegiao.addItem("Alagoas");
 		comboRegiao.addItem("Amapá");
@@ -119,6 +121,7 @@ public class TelaCadastroUsuario {
 		});
 
 		JComboBox<String> comboSexo = new JComboBox<String>();
+		comboSexo.setEditable(true);
 		comboSexo.setToolTipText("Tipo de utilização");
 		comboSexo.setForeground(new Color(0, 103, 80));
 		comboSexo.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -149,11 +152,13 @@ public class TelaCadastroUsuario {
 				arrowButton.setVisible(true);
 			}
 		});
-
+		
+		comboSexo.setSelectedItem("Selecione o genêro"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 		comboSexo.addItem("Masculino");
 		comboSexo.addItem("Feminino");
 
 		JComboBox<String> comboEsCivil = new JComboBox<String>();
+		comboEsCivil.setEditable(true);
 		comboEsCivil.setToolTipText("Tipo de utilização");
 		comboEsCivil.setForeground(new Color(0, 103, 80));
 		comboEsCivil.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -185,6 +190,7 @@ public class TelaCadastroUsuario {
 			}
 		});
 
+		comboEsCivil.setSelectedItem("Estado Civil"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 		comboEsCivil.addItem("Casado(a)");
 		comboEsCivil.addItem("Solteiro(a)");
 		comboEsCivil.addItem("Viúvo(a)");
@@ -193,6 +199,7 @@ public class TelaCadastroUsuario {
 		comboEsCivil.addItem("União Estável");
 
 		JComboBox<String> comboTempCnh = new JComboBox<String>();
+		comboTempCnh.setEditable(true);
 		comboTempCnh.setToolTipText("Tipo de utilização");
 		comboTempCnh.setForeground(new Color(0, 103, 80));
 		comboTempCnh.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -200,6 +207,7 @@ public class TelaCadastroUsuario {
 		comboTempCnh.setBounds(594, 483, 344, 87);
 		frame.getContentPane().add(comboTempCnh);
 
+		comboTempCnh.setSelectedItem("Tempo de CNH"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 		comboTempCnh.addItem("Menos de 2 anos");
 		comboTempCnh.addItem("2 anos ou mais");
 
@@ -238,6 +246,12 @@ public class TelaCadastroUsuario {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroVeiculo telaCadastro = new TelaCadastroVeiculo();
 				telaCadastro.frame.setVisible(true);
+				String tempCnh = (String) comboTempCnh.getSelectedItem();
+				String estadoCivil = (String) comboEsCivil.getSelectedItem();
+				String sexo = (String) comboSexo.getSelectedItem();
+				String estado = (String) comboRegiao.getSelectedItem();
+			    System.out.println(tempCnh+" "+ estadoCivil + " "+ sexo+" "+estado);
+				
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});

@@ -58,12 +58,12 @@ public class TelaDadosSeguro {
 		ImageIcon image = new ImageIcon("LogoTokio.png"); // criando o ícone da imagem
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
-		JRadioButton kmVeiculoSim = new JRadioButton("");
+		JRadioButton kmVeiculoSim = new JRadioButton("É 0 KM");
 		kmVeiculoSim.setBackground(new Color(0, 103, 80));
 		kmVeiculoSim.setBounds(652, 239, 34, 64);
 		frame.getContentPane().add(kmVeiculoSim);
 
-		JRadioButton kmVeiculoNao = new JRadioButton("");
+		JRadioButton kmVeiculoNao = new JRadioButton("Não é 0 KM");
 		kmVeiculoNao.setBackground(new Color(0, 103, 80));
 		kmVeiculoNao.setBounds(787, 244, 34, 59);
 		frame.getContentPane().add(kmVeiculoNao);
@@ -74,12 +74,12 @@ public class TelaDadosSeguro {
 		kmVeiculo.add(kmVeiculoSim);
 		kmVeiculo.add(kmVeiculoNao);
 
-		JRadioButton isFiscalSim = new JRadioButton("");
+		JRadioButton isFiscalSim = new JRadioButton("Possui isenção fiscal");
 		isFiscalSim.setBackground(new Color(0, 103, 80));
 		isFiscalSim.setBounds(652, 405, 34, 64);
 		frame.getContentPane().add(isFiscalSim);
 
-		JRadioButton isFiscalNao = new JRadioButton("");
+		JRadioButton isFiscalNao = new JRadioButton("Não possui isenção  fiscal");
 		isFiscalNao.setBackground(new Color(0, 103, 80));
 		isFiscalNao.setBounds(787, 410, 34, 59);
 		frame.getContentPane().add(isFiscalNao);
@@ -88,12 +88,12 @@ public class TelaDadosSeguro {
 		isFiscal.add(isFiscalSim);
 		isFiscal.add(isFiscalNao);
 
-		JRadioButton kitGasSim = new JRadioButton("");
+		JRadioButton kitGasSim = new JRadioButton("Tem kit gas");
 		kitGasSim.setBackground(new Color(0, 103, 80));
 		kitGasSim.setBounds(652, 577, 34, 64);
 		frame.getContentPane().add(kitGasSim);
 
-		JRadioButton kitGasNao = new JRadioButton("");
+		JRadioButton kitGasNao = new JRadioButton("Não tem kit gas");
 		kitGasNao.setBackground(new Color(0, 103, 80));
 		kitGasNao.setBounds(787, 582, 34, 59);
 		frame.getContentPane().add(kitGasNao);
@@ -125,6 +125,44 @@ public class TelaDadosSeguro {
 
 		// deixar em todos
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		
+		
+		
+		
+		
+		
+		  ActionListener radioListener = new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                JRadioButton source = (JRadioButton) e.getSource();
+	                String message = "Selecionado: " + source.getText();
+	                System.out.println(message);
+	            }
+	        };
+		
+		
+		
+	        kmVeiculoSim.addActionListener(radioListener);
+	        kmVeiculoNao.addActionListener(radioListener);
+	        isFiscalSim.addActionListener(radioListener);
+	        isFiscalNao.addActionListener(radioListener);
+	        kitGasSim.addActionListener(radioListener);
+	        kitGasNao.addActionListener(radioListener);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 	}
 
@@ -132,5 +170,6 @@ public class TelaDadosSeguro {
 		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
 		btnNewButton.setIcon(icon);
 	}
+	
 
 }

@@ -122,6 +122,9 @@ public class TelaCadastroVeiculo {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2();
 				telaCadastro.frame.setVisible(true);
+				String placa =  new String (digitePlaca.getText());
+				String chassi =  new String  (digiteChassi.getText());
+				System.out.println("Placa:  "+placa +  " Numero Chassi: "+chassi);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});
@@ -141,4 +144,5 @@ public class TelaCadastroVeiculo {
 		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
 		btnNewButton.setIcon(icon);
 	}
+	
 }

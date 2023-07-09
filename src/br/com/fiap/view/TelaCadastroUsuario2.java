@@ -21,6 +21,8 @@ public class TelaCadastroUsuario2 {
 	private JTextField digiteNome;
 	private JButton proxPag;
 	private JPasswordField digiteSenha;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -86,49 +88,9 @@ public class TelaCadastroUsuario2 {
 		
 		
 		
-		digiteNome.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String nome = new String(digiteNome.getText());
-		        System.out.println(nome);
-		        
-		        // Outras ações a serem executadas quando o botão for clicado
-		    }
-		});
 		
 		
-		
-		
-		
-		
-		
-		
-		digiteEmail.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String email = new String(digiteEmail.getText());
-		        System.out.println(email);
-		        
-		        // Outras ações a serem executadas quando o botão for clicado
-		    }
-		});
-		
-		
-		
-		digiteSenha.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        String senha = new String(digiteSenha.getPassword());
-		        System.out.println("Senha digitada: " + senha);
-		        
-		        // Outras ações a serem executadas quando o botão for clicado
-		    }
-		});
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 
 		proxPag = new JButton("New button");
@@ -142,6 +104,12 @@ public class TelaCadastroUsuario2 {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroUsuario3 telaCadastro = new TelaCadastroUsuario3();
 				telaCadastro.frame.setVisible(true);
+				 String email = new String(digiteEmail.getText());
+				 String senha = new String(digiteSenha.getPassword());
+				 String nome = new String(digiteNome.getText());
+				 
+				 System.out.println("Email: "+email +" Senha: "+ senha + " nome: " + nome);
+				 
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});
@@ -154,6 +122,8 @@ public class TelaCadastroUsuario2 {
 
 		// frame.setLocationRelativeTo(null);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		
 
 	}
 
@@ -161,4 +131,6 @@ public class TelaCadastroUsuario2 {
 		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
 		btnNewButton.setIcon(icon);
 	}
+
+	
 }

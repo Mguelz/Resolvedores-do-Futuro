@@ -157,6 +157,9 @@ public class TelaCadastroSeguro {
             public void actionPerformed(ActionEvent e) {
                 TelaCadastroDependente telaCadastro = new TelaCadastroDependente();
                 telaCadastro.frame.setVisible(true);
+                String tpUtilizacao = (String) tipoUtilizacao.getSelectedItem();
+                String tpGaragem = (String) garagem.getSelectedItem();
+                System.out.println(tpGaragem +" "+tpUtilizacao);
                 frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
             }
         });

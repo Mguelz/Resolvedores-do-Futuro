@@ -78,6 +78,26 @@ public class TelaCadastroDependente {
 			public void actionPerformed(ActionEvent e) {
 				TelaGerarApolice telaCadastro = new TelaGerarApolice();
 				telaCadastro.frame.setVisible(true);
+				
+				 if (checkFem.isSelected()) {
+			            System.out.println("Checkbox Feminino selecionado");
+			        } else {
+			            System.out.println("Checkbox Feminimo deselecionado");
+			        }
+				 
+				 if (checkNao.isSelected()) {
+			            System.out.println("Checkbox Nao possuo selecionado");
+			        } else {
+			            System.out.println("Checkbox Nao possuo deselecionado");
+			        }
+				 
+				 
+				 if (checkMasc.isSelected()) {
+			            System.out.println("Checkbox masculino selecionado");
+			        } else {
+			            System.out.println("Checkbox masculino deselecionado");
+			        }
+				
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});

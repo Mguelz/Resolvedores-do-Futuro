@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 public class TelaEscolherSeguro {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -53,10 +53,15 @@ public class TelaEscolherSeguro {
 
 		JButton btnCompreensivoTotal = new JButton("Compreensivo Total");
 		btnCompreensivoTotal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose(); // fechar a janela atual
-			}
-		});
+            public void actionPerformed(ActionEvent e) {
+            	 JButton source = (JButton) e.getSource();
+                 String buttonText = source.getText();
+                 System.out.println(buttonText);
+                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
+                telaCadastro.frame.setVisible(true);
+                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+            }
+        });
 
 		btnCompreensivoTotal.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		btnCompreensivoTotal.setBackground(new Color(0, 103, 80));
@@ -69,10 +74,15 @@ public class TelaEscolherSeguro {
 
 		JButton btnPerdaTotalPor = new JButton("Perda Total Por Colisão");
 		btnPerdaTotalPor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose(); // AÇÃO DO BOTÃO!
-			}
-		});
+            public void actionPerformed(ActionEvent e) {
+            	JButton source = (JButton) e.getSource();
+                String buttonText = source.getText();
+                System.out.println(buttonText);
+                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
+                telaCadastro.frame.setVisible(true);
+                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+            }
+        });
 		btnPerdaTotalPor.setForeground(Color.WHITE);
 		btnPerdaTotalPor.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		btnPerdaTotalPor.setFocusPainted(false);
@@ -84,10 +94,15 @@ public class TelaEscolherSeguro {
 
 		JButton btnRouboEFurto = new JButton("Roubo e Furto");
 		btnRouboEFurto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose(); // AÇÃO DO BOTÃO!
-			}
-		});
+            public void actionPerformed(ActionEvent e) {
+            	JButton source = (JButton) e.getSource();
+                String buttonText = source.getText();
+                System.out.println(buttonText);
+                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
+                telaCadastro.frame.setVisible(true);
+                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+            }
+        });
 
 		btnRouboEFurto.setForeground(Color.WHITE);
 		btnRouboEFurto.setFont(new Font("SansSerif", Font.PLAIN, 30));
@@ -97,6 +112,33 @@ public class TelaEscolherSeguro {
 		btnRouboEFurto.setBackground(new Color(0, 103, 80));
 		btnRouboEFurto.setBounds(976, 438, 314, 148);
 		frame.getContentPane().add(btnRouboEFurto);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		// deixar em ultimo!!!!!!
 		JLabel lblNewLabel = new JLabel("");

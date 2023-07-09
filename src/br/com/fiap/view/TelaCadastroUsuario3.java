@@ -5,14 +5,16 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JCheckBox;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 
 public class TelaCadastroUsuario3 {
 
@@ -23,7 +25,8 @@ public class TelaCadastroUsuario3 {
 	private JTextField digiteCpf;
 	private JTextField digiteDataNasc;
 	private JButton proxPag;
-	private JButton proxPag_1;
+	String formato = "dd/MM/yyyy";
+	String dataString;
 
 	/**
 	 * Launch the application.
@@ -98,6 +101,26 @@ public class TelaCadastroUsuario3 {
 			public void actionPerformed(ActionEvent e) {
 				TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario();
 				telaCadastro.frame.setVisible(true);
+				String cpf = new String(digiteCpf.getText());
+				String dataNascimento = new String(digiteDataNasc.getText());
+				String celular = new String(digiteCelular.getText());
+				System.out.println("CPF: " + cpf + " Celular: " + celular + " Data de nascimento: " + dataNascimento);
+
+				dataString = digiteDataNasc.getText();
+
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
+
+				try {
+					LocalDate data = LocalDate.parse(dataString, formatter);
+					System.out.println("Data convertida: " + data);
+
+					// Converter para java.sql.Date
+					Date dataSql = Date.valueOf(data);
+					System.out.println("Data SQL: " + dataSql);
+				} catch (DateTimeParseException e1) {
+					System.out.println("Erro ao converter data: " + e1.getMessage());
+				}
+
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});
@@ -116,4 +139,5 @@ public class TelaCadastroUsuario3 {
 		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
 		proxPag.setIcon(icon);
 	}
+
 }

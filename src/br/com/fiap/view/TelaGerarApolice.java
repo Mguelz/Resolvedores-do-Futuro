@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextPane;
+import javax.swing.JTextField;
 
 public class TelaGerarApolice {
     public JFrame frame;
@@ -65,6 +67,7 @@ public class TelaGerarApolice {
         
         
         
+        TelaCadastroUsuario2 nome = new TelaCadastroUsuario2();
         
 
         proxPag.addActionListener(new ActionListener() {
@@ -74,8 +77,6 @@ public class TelaGerarApolice {
                 frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
             }
         });
-        
-        
         
         // Deixar em último
         JLabel lblNewLabel = new JLabel("");
@@ -94,5 +95,4 @@ public class TelaGerarApolice {
         ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVerde.png"));
         btnNewButton.setIcon(icon);
     }
-    
 }

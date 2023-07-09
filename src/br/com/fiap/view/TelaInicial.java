@@ -69,16 +69,11 @@ public class TelaInicial {
 
         btnIniciarCotacao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
+                TelaEscolherSeguro telaCadastro = new TelaEscolherSeguro();
                 telaCadastro.frame.setVisible(true);
-                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+               frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
             }
         });
-		
-		
-		
-		
-		
 		
 		
 		

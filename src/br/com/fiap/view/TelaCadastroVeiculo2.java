@@ -60,6 +60,7 @@ public class TelaCadastroVeiculo2 {
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
 		JComboBox<String> comboMarca = new JComboBox<String>();
+		comboMarca.setEditable(true);
 		comboMarca.setToolTipText("Tipo de utilização");
 		comboMarca.setMaximumRowCount(3);
 		comboMarca.setForeground(new Color(0, 103, 80));
@@ -67,8 +68,10 @@ public class TelaCadastroVeiculo2 {
 		comboMarca.setBackground(new Color(255, 255, 255));
 		comboMarca.setBounds(98, 263, 344, 87);
 		frame.getContentPane().add(comboMarca);
+		comboMarca.setSelectedItem("Selecione a marca"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 
 		JComboBox<String> comboAno = new JComboBox<String>();
+		comboAno.setEditable(true);
 		comboAno.setToolTipText("Tipo de utilização");
 		comboAno.setMaximumRowCount(3);
 		comboAno.setForeground(new Color(0, 103, 80));
@@ -76,6 +79,7 @@ public class TelaCadastroVeiculo2 {
 		comboAno.setBackground(new Color(255, 255, 255));
 		comboAno.setBounds(98, 488, 344, 87);
 		frame.getContentPane().add(comboAno);
+		comboAno.setSelectedItem("Selecione o ano"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 
 		comboAno.addItem("2023");
 		comboAno.addItem("2022");
@@ -101,28 +105,10 @@ public class TelaCadastroVeiculo2 {
 		comboAno.addItem("2002");
 		comboAno.addItem("2001");
 		comboAno.addItem("2000");
-		comboAno.addItem("1999");
-		comboAno.addItem("1998");
-		comboAno.addItem("1997");
-		comboAno.addItem("1996");
-		comboAno.addItem("1995");
-		comboAno.addItem("1994");
-		comboAno.addItem("1993");
-		comboAno.addItem("1992");
-		comboAno.addItem("1991");
-		comboAno.addItem("1990");
-		comboAno.addItem("1989");
-		comboAno.addItem("1988");
-		comboAno.addItem("1987");
-		comboAno.addItem("1986");
-		comboAno.addItem("1985");
-		comboAno.addItem("1984");
-		comboAno.addItem("1983");
-		comboAno.addItem("1982");
-		comboAno.addItem("1981");
-		comboAno.addItem("1980");
+		
 
 		JComboBox<String> comboCorretor = new JComboBox<String>();
+		comboCorretor.setEditable(true);
 		comboCorretor.setToolTipText("Tipo de utilização");
 		comboCorretor.setMaximumRowCount(3);
 		comboCorretor.setForeground(new Color(0, 103, 80));
@@ -130,8 +116,10 @@ public class TelaCadastroVeiculo2 {
 		comboCorretor.setBackground(new Color(255, 255, 255));
 		comboCorretor.setBounds(587, 263, 344, 87);
 		frame.getContentPane().add(comboCorretor);
+		comboCorretor.setSelectedItem("Escolha o corretor"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 
 		JComboBox<String> comboCombustivel = new JComboBox<String>();
+		comboCombustivel.setEditable(true);
 		comboCombustivel.setToolTipText("Tipo de utilização");
 		comboCombustivel.setMaximumRowCount(3);
 		comboCombustivel.setForeground(new Color(0, 103, 80));
@@ -139,6 +127,7 @@ public class TelaCadastroVeiculo2 {
 		comboCombustivel.setBackground(new Color(255, 255, 255));
 		comboCombustivel.setBounds(587, 488, 344, 87);
 		frame.getContentPane().add(comboCombustivel);
+		comboCombustivel.setSelectedItem("Tipo combustivel"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
 
 		comboCombustivel.addItem("Gasolina");
 		comboCombustivel.addItem("Alcool");
@@ -252,6 +241,10 @@ public class TelaCadastroVeiculo2 {
 			public void actionPerformed(ActionEvent e) {
 				TelaDadosSeguro telaCadastro = new TelaDadosSeguro();
 				telaCadastro.frame.setVisible(true);
+				String combustivel = (String) comboCombustivel.getSelectedItem();
+				String ano = (String) comboAno.getSelectedItem();
+				System.out.println(combustivel + " "+ ano);
+				
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});

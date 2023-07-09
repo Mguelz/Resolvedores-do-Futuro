@@ -19,10 +19,10 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 public class TelaCadastroVeiculo {
 
 	public JFrame frame;
-	private JTextField textField;
-	private JTextField textField_2;
+	private JTextField digitePlaca;
+	private JTextField digiteChassi;
 	private JComboBox<String> tipoUtilizacao;
-	private JComboBox<String> comboBox;
+	private JComboBox<String> comboModelo;
 	private JButton proxPag;
 
 	/**
@@ -56,64 +56,38 @@ public class TelaCadastroVeiculo {
 		frame.setBounds(100, 100, 1363, 767);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		ImageIcon image = new ImageIcon("LogoTokio.png"); //criando o ícone da imagem
+
+		ImageIcon image = new ImageIcon("LogoTokio.png"); // criando o ícone da imagem
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		textField = new JTextField();
-		textField.setText("Digite Aqui");
-		textField.setColumns(10);
-		textField.setBorder(null);
-		textField.setBackground(new Color(244, 244, 244));
-		textField.setBounds(199, 279, 341, 46);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		frame.getContentPane().add(textField);
-		
-		
-		
-		
-		
-		textField_2 = new JTextField();
-		textField_2.setText("Digite Aqui");
-		textField_2.setColumns(10);
-		textField_2.setBorder(null);
-		textField_2.setBackground(new Color(244, 244, 244));
-		textField_2.setBounds(835, 279, 341, 46);
-		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		frame.getContentPane().add(textField_2);
-		
-		
-	
-		
-		comboBox = new JComboBox<String>();
-		comboBox.setToolTipText("Tipo de utilização");
-		comboBox.setMaximumRowCount(3);
-		comboBox.setForeground(new Color(0, 103, 80));
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		comboBox.setBackground(new Color(244, 244, 244));
-		comboBox.setBounds(183, 522, 344, 87);
-		frame.getContentPane().add(comboBox);
-		
-		
-		
-		comboBox.setUI(new BasicComboBoxUI() {
+		digitePlaca = new JTextField();
+		digitePlaca.setText("Digite Aqui");
+		digitePlaca.setColumns(10);
+		digitePlaca.setBorder(null);
+		digitePlaca.setBackground(new Color(244, 244, 244));
+		digitePlaca.setBounds(199, 279, 341, 46);
+		digitePlaca.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		frame.getContentPane().add(digitePlaca);
+
+		digiteChassi = new JTextField();
+		digiteChassi.setText("Digite Aqui");
+		digiteChassi.setColumns(10);
+		digiteChassi.setBorder(null);
+		digiteChassi.setBackground(new Color(244, 244, 244));
+		digiteChassi.setBounds(835, 279, 341, 46);
+		digiteChassi.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		frame.getContentPane().add(digiteChassi);
+
+		comboModelo = new JComboBox<String>();
+		comboModelo.setToolTipText("Modelo Do Veiculo");
+		comboModelo.setMaximumRowCount(3);
+		comboModelo.setForeground(new Color(0, 103, 80));
+		comboModelo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		comboModelo.setBackground(new Color(244, 244, 244));
+		comboModelo.setBounds(183, 522, 344, 87);
+		frame.getContentPane().add(comboModelo);
+
+		comboModelo.setUI(new BasicComboBoxUI() {
 			@Override
 			protected JButton createArrowButton() {
 				JButton button = new JButton();
@@ -136,44 +110,35 @@ public class TelaCadastroVeiculo {
 				arrowButton.setVisible(true);
 			}
 		});
-		
+
 		proxPag = new JButton("New button");
 		proxPag.setBorderPainted(false);
 		proxPag.setBackground(new Color(0, 103, 80));
 		proxPag.setBounds(1228, 591, 109, 126);
 		frame.getContentPane().add(proxPag);
 		adicionarIcone(proxPag);
-		
-		
-		
-		 proxPag.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	                TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2();
-	                telaCadastro.frame.setVisible(true);
-	                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
-	            }
-	        });
-		
-		
-		
-		
-		
-		
-		
-		
+
+		proxPag.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2();
+				telaCadastro.frame.setVisible(true);
+				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+			}
+		});
+
 		// deixar em todos
-		
+
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		// deixar em ultimo!!!!!!
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastroVeiculo.class.getResource("/Veiculo.png")));
 		lblNewLabel.setBounds(0, -166, 1884, 1092);
 		frame.getContentPane().add(lblNewLabel);
-		
-		
+
 	}
+
 	private void adicionarIcone(JButton btnNewButton) {
-        ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
-        btnNewButton.setIcon(icon);
-    }
+		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
+		btnNewButton.setIcon(icon);
+	}
 }

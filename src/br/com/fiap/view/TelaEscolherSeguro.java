@@ -47,6 +47,9 @@ public class TelaEscolherSeguro {
 		frame.setBounds(100, 100, 1363, 767);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		ImageIcon image = new ImageIcon("LogoTokio.png"); //criando o ícone da imagem
+		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
 		JButton btnCompreensivoTotal = new JButton("Compreensivo Total");
 		btnCompreensivoTotal.addActionListener(new ActionListener() {

@@ -2,6 +2,9 @@ package br.com.fiap.view;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -9,117 +12,168 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.LookAndFeel;
 import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.Font;
 
 public class TelaCadastroVeiculo {
 
-    private JFrame frame;
+	public JFrame frame;
+	private JTextField textField;
+	private JTextField textField_2;
+	private JComboBox<String> tipoUtilizacao;
+	private JComboBox<String> comboBox;
+	private JButton proxPag;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    TelaCadastroVeiculo window = new TelaCadastroVeiculo();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaCadastroVeiculo window = new TelaCadastroVeiculo();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    /**
-     * Create the application.
-     */
-    public TelaCadastroVeiculo() {
-        initialize();
-    }
+	/**
+	 * Create the application.
+	 */
+	public TelaCadastroVeiculo() {
+		initialize();
+	}
 
-    /**
-     * Initialize the contents of the frame.
-     */
-    private void initialize() {
-        frame = new JFrame();
-        frame.setBounds(100, 100, 1363, 767);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(null);
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1363, 767);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		ImageIcon image = new ImageIcon("LogoTokio.png"); //criando o ícone da imagem
+		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
-       
-        
-        
-        JComboBox<String> comboBox = new JComboBox<>();
-        comboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        
-        
-        comboBox.addItem("Locomoção diária");
-        comboBox.addItem("Locomoção até o trabalho");
-        comboBox.addItem("Motorista de aplicativo");
-        comboBox.addItem("Motorista de táxi");
-        comboBox.addItem("PCD - Locomoção diária");
-        comboBox.addItem("PCD - Exercício de trabalho");
-        //comboBox.getFont();
-        
-        
-        comboBox.setToolTipText("Tipo de utilização");
-        comboBox.setForeground(new Color(0, 103, 80));
-        comboBox.setBackground(new Color(255, 255, 255));
-        comboBox.setBounds(198, 273, 398, 87);
-        frame.getContentPane().add(comboBox);
-        
-        
-        
-        
-        
-        JComboBox<String> comboBox_1 = new JComboBox<String>();
-        comboBox_1.setToolTipText("");
-        comboBox_1.setForeground(Color.BLACK);
-        comboBox_1.setBackground(Color.WHITE);
-        comboBox_1.setBounds(212, 532, 398, 87);
-        frame.getContentPane().add(comboBox_1);
-        
-        
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		textField = new JTextField();
+		textField.setText("Digite Aqui");
+		textField.setColumns(10);
+		textField.setBorder(null);
+		textField.setBackground(new Color(244, 244, 244));
+		textField.setBounds(199, 279, 341, 46);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		frame.getContentPane().add(textField);
+		
+		
+		
+		
+		
+		textField_2 = new JTextField();
+		textField_2.setText("Digite Aqui");
+		textField_2.setColumns(10);
+		textField_2.setBorder(null);
+		textField_2.setBackground(new Color(244, 244, 244));
+		textField_2.setBounds(835, 279, 341, 46);
+		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		frame.getContentPane().add(textField_2);
+		
+		
+	
+		
+		comboBox = new JComboBox<String>();
+		comboBox.setToolTipText("Tipo de utilização");
+		comboBox.setMaximumRowCount(3);
+		comboBox.setForeground(new Color(0, 103, 80));
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		comboBox.setBackground(new Color(244, 244, 244));
+		comboBox.setBounds(183, 522, 344, 87);
+		frame.getContentPane().add(comboBox);
+		
+		
+		
+		comboBox.setUI(new BasicComboBoxUI() {
+			@Override
+			protected JButton createArrowButton() {
+				JButton button = new JButton();
+				button.setBorder(BorderFactory.createEmptyBorder());
+				button.setContentAreaFilled(false);
+				button.setFocusPainted(false);
+				button.setIcon(new ImageIcon("arrow_icon.png")); // Substitua pelo ícone da seta desejado
+				return button;
+			}
 
-        // deixar em ultimo!!!!!!
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon(TelaCadastroVeiculo.class.getResource("/Seguro2.png")));
-        lblNewLabel.setBounds(10, -152, 1884, 1092);
-        frame.getContentPane().add(lblNewLabel);
-        // deixar em todos
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-        
-        comboBox.setUI(new BasicComboBoxUI() {
-            @Override
-            protected JButton createArrowButton() {
-                JButton button = new JButton();
-                button.setBorder(BorderFactory.createEmptyBorder());
-                button.setContentAreaFilled(false);
-                button.setFocusPainted(false);
-                button.setIcon(new ImageIcon("arrow_icon.png")); // Substitua pelo ícone da seta desejado
-                return button;
-            }
+			@Override
+			protected void installDefaults() {
+				super.installDefaults();
+				LookAndFeel.uninstallBorder(comboBox);
+			}
 
-            @Override
-            protected void installDefaults() {
-                super.installDefaults();
-                LookAndFeel.uninstallBorder(comboBox);
-            }
-
-            @Override
-            public void configureArrowButton() {
-                super.configureArrowButton();
-                arrowButton.setVisible(true);
-            }
-        });
-        
-        
-        
-        
-        
+			@Override
+			public void configureArrowButton() {
+				super.configureArrowButton();
+				arrowButton.setVisible(true);
+			}
+		});
+		
+		proxPag = new JButton("New button");
+		proxPag.setBorderPainted(false);
+		proxPag.setBackground(new Color(0, 103, 80));
+		proxPag.setBounds(1228, 591, 109, 126);
+		frame.getContentPane().add(proxPag);
+		adicionarIcone(proxPag);
+		
+		
+		
+		 proxPag.addActionListener(new ActionListener() {
+	            public void actionPerformed(ActionEvent e) {
+	                TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2();
+	                telaCadastro.frame.setVisible(true);
+	                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+	            }
+	        });
+		
+		
+		
+		
+		
+		
+		
+		
+		// deixar em todos
+		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		// deixar em ultimo!!!!!!
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(TelaCadastroVeiculo.class.getResource("/Veiculo.png")));
+		lblNewLabel.setBounds(0, -166, 1884, 1092);
+		frame.getContentPane().add(lblNewLabel);
+		
+		
+	}
+	private void adicionarIcone(JButton btnNewButton) {
+        ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
+        btnNewButton.setIcon(icon);
     }
 }

@@ -61,6 +61,24 @@ public class TelaInicial {
 		frame.getContentPane().add(btnIniciarCotacao);
 		
 		
+
+		ImageIcon image = new ImageIcon("LogoTokio.png"); //criando o ícone da imagem
+		frame.setIconImage(image.getImage()); // mudando o ícone do frame
+		
+		
+
+        btnIniciarCotacao.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
+                telaCadastro.frame.setVisible(true);
+                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+            }
+        });
+		
+		
+		
+		
+		
 		
 		
 		

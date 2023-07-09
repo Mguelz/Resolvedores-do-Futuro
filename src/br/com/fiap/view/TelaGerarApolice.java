@@ -39,27 +39,27 @@ public class TelaGerarApolice {
         ImageIcon image = new ImageIcon("LogoTokio.png"); //criando o ícone da imagem
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
-        JButton btnNewButton = new JButton("New button");
-        btnNewButton.setBackground(new Color(244, 244, 244));
-        btnNewButton.setForeground(new Color(244, 244, 244));
-        btnNewButton.setBounds(689, 188, 113, 108);
-        btnNewButton.setBorderPainted(false);
-        adicionarIcone(btnNewButton); // Adicionar o ícone ao botão
-        frame.getContentPane().add(btnNewButton);
+        JButton btnGerarApolice = new JButton("New button");
+        btnGerarApolice.setBackground(new Color(244, 244, 244));
+        btnGerarApolice.setForeground(new Color(244, 244, 244));
+        btnGerarApolice.setBounds(689, 188, 113, 108);
+        btnGerarApolice.setBorderPainted(false);
+        adicionarIcone(btnGerarApolice); // Adicionar o ícone ao botão
+        frame.getContentPane().add(btnGerarApolice);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        JButton btnNewButton_1 = new JButton("New button");
-        btnNewButton_1.setForeground(new Color(244, 244, 244));
-        btnNewButton_1.setBorderPainted(false);
-        btnNewButton_1.setBackground(new Color(244, 244, 244));
-        adicionarIcone(btnNewButton_1);
-        btnNewButton_1.setBounds(689, 510, 113, 108);
-        frame.getContentPane().add(btnNewButton_1);
+		JButton btnGerarCarteirinha = new JButton("New button");
+        btnGerarCarteirinha.setForeground(new Color(244, 244, 244));
+        btnGerarCarteirinha.setBorderPainted(false);
+        btnGerarCarteirinha.setBackground(new Color(244, 244, 244));
+        adicionarIcone(btnGerarCarteirinha);
+        btnGerarCarteirinha.setBounds(689, 510, 113, 108);
+        frame.getContentPane().add(btnGerarCarteirinha);
         
         JButton proxPag = new JButton("New button");
         proxPag.setBorderPainted(false);
         proxPag.setBackground(new Color(244, 244, 244));
-        proxPag.setBounds(1242, 584, 109, 126);
+        proxPag.setBounds(1228, 591, 109, 126);
         frame.getContentPane().add(proxPag);
         adicionarIcone1(proxPag);
         

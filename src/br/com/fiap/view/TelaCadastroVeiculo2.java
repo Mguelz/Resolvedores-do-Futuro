@@ -55,8 +55,8 @@ public class TelaCadastroVeiculo2 {
 		frame.setBounds(100, 100, 1363, 767);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		ImageIcon image = new ImageIcon("LogoTokio.png"); //criando o ícone da imagem
+
+		ImageIcon image = new ImageIcon("LogoTokio.png"); // criando o ícone da imagem
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
 		JComboBox<String> comboMarca = new JComboBox<String>();
@@ -240,27 +240,22 @@ public class TelaCadastroVeiculo2 {
 				arrowButton.setVisible(true);
 			}
 		});
-		
-		
-		
+
 		JButton proxPag = new JButton("New button");
 		proxPag.setBorderPainted(false);
 		proxPag.setBackground(new Color(0, 103, 80));
 		proxPag.setBounds(1228, 591, 109, 126);
 		frame.getContentPane().add(proxPag);
 		adicionarIcone(proxPag);
-		
-		
-		   proxPag.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	                TelaDadosSeguro telaCadastro = new TelaDadosSeguro();
-	                telaCadastro.frame.setVisible(true);
-	                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
-	            }
-	        });
 
-		
-		
+		proxPag.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaDadosSeguro telaCadastro = new TelaDadosSeguro();
+				telaCadastro.frame.setVisible(true);
+				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+			}
+		});
+
 		// deixar em todos
 
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -269,11 +264,11 @@ public class TelaCadastroVeiculo2 {
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastroVeiculo2.class.getResource("/Veiculo2.png")));
 		lblNewLabel.setBounds(0, -166, 1884, 1092);
 		frame.getContentPane().add(lblNewLabel);
-		
 
 	}
+
 	private void adicionarIcone(JButton btnNewButton) {
-        ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
-        btnNewButton.setIcon(icon);
-    }
+		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
+		btnNewButton.setIcon(icon);
+	}
 }

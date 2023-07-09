@@ -83,6 +83,53 @@ public class TelaCadastroUsuario2 {
 		digiteSenha.setBackground(new Color(244, 244, 244));
 		digiteSenha.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		frame.getContentPane().add(digiteSenha);
+		
+		
+		
+		digiteNome.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String nome = new String(digiteNome.getText());
+		        System.out.println(nome);
+		        
+		        // Outras ações a serem executadas quando o botão for clicado
+		    }
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		digiteEmail.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String email = new String(digiteEmail.getText());
+		        System.out.println(email);
+		        
+		        // Outras ações a serem executadas quando o botão for clicado
+		    }
+		});
+		
+		
+		
+		digiteSenha.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        String senha = new String(digiteSenha.getPassword());
+		        System.out.println("Senha digitada: " + senha);
+		        
+		        // Outras ações a serem executadas quando o botão for clicado
+		    }
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 		proxPag = new JButton("New button");
 		proxPag.setBorderPainted(false);

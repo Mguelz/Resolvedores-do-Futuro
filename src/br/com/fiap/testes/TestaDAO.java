@@ -4,27 +4,33 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
-import br.com.fiap.controller.ClienteController;
-import br.com.fiap.model.ClienteModel;
+import br.com.fiap.controller.EspecialidadeController;
 import br.com.fiap.model.EspecialidadeModel;
 import br.com.fiap.model.VeiculoModel;
 import br.com.fiap.repository.VeiculoDAO;
 
 public class TestaDAO {
 	public static void main(String[] args) throws SQLException, ParseException {
-
+//
+//		EspecialidadeController ec1 = new EspecialidadeController();
+//		ec1.excluirEspecialidade(4);
+		
+		
+		
+		
+		
+		
 //		ApoliceController ac = new ApoliceController();
-//		Veiculo carro = new Veiculo("AB12345", "placa", "kkkkk", true, "2005", "fabricante", "combustivel", (byte) 1,
-//				true, false, "utilizacao");
+		//VeiculoModel carro = new VeiculoModel("AB2134567", "kkPLACA", "MODELO",false, "09/08/05", "Fabricante", "combustivel",(byte)1,true, true, "Pessoal",(long)1,50000.00,Long.parseLong("12345678901"));
 //		VeiculoDAO DAO = new VeiculoDAO();
-//		
-//		DAO.insert(carro);
+		
+		//DAO.delete("AB2134567");
 //		System.out.println(DAO.selectByChassis("AB12345").getNumeroChassi());
 		// ac.sellectById(1);
 ////		DAO.update(carro);
 //		
-//		List<Veiculo> veiculos = DAO.selectAll();
-//			for (Veiculo veiculo : veiculos) {
+//		List<VeiculoModel> veiculos = DAO.selectAll();
+//			for (VeiculoModel veiculo : veiculos) {
 //				System.out.println(veiculo.getNumeroChassi());
 //				System.out.println(veiculo.getPlaca());
 //			}		
@@ -52,7 +58,7 @@ public class TestaDAO {
 //	        int tempoHabilitacao = 5;
 //////	        
 //	        Cliente cliente = new Cliente(cpf, dataNascimento, nome, email, endereco, estadoCivil, genero, celular, tempoHabilitacao);
-//	        ClienteDAO cd1 = new ClienteDAO();
+//			ClienteDAO cd1 = new ClienteDAO();
 ////        cd1.insert(cliente);
 //	        List <Cliente> clientes = cd1.selectAll();
 //	        for (Cliente cliente2 : clientes) {
@@ -91,7 +97,11 @@ public class TestaDAO {
 //			System.out.println(especialidade.getCd_especialidade());
 //		}
 		
-		
-
+//			ClienteModel c1 = new ClienteModel((long)1234567899,"Marilia M. Soares", 1,	Date.valueOf("1974-08-26"),"MariliaSoares@example.com", "Minas Gerais","M",0, 0, "Casado(a)");
+//			cd1.delete(1234567899);
+	
+	
+///////////////////////////////////////////////////////////////////////////////////////////////
+//	System.out.println(DAO.selectByChassi("ABC123456789"));
 	}
 }

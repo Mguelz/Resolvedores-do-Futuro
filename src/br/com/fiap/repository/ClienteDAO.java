@@ -18,7 +18,7 @@ public class ClienteDAO {
 	}
 
 	public void insert(ClienteModel cliente) {
-		String sql = "insert into sgr_cliente (nr_cpf, nm_cliente, sgr_corretor_nr_id, dt_nascimento, ds_email, ds_estado, ds_genero, nr_tempo, nr_dependente) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into sgr_cliente (nr_cpf, nm_cliente, sgr_corretor_nr_id, dt_nascimento, ds_email, ds_estado, ds_genero, nr_tempo, nr_dependente, ds_estadoc) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, cliente.getCpf());
@@ -26,10 +26,11 @@ public class ClienteDAO {
 			stmt.setInt(3, cliente.getCorretorId());
 			stmt.setDate(4, cliente.getDataNascimento());
 			stmt.setString(5, cliente.getEmail());
-			stmt.setString(6, cliente.getEstadoCivil());
+			stmt.setString(6, cliente.getEstado());
 			stmt.setString(7, cliente.getGenero());
 			stmt.setInt(8, cliente.getTempoHabilitacao());
 			stmt.setInt(9, cliente.getDependente());
+			stmt.setString(10, cliente.getEstadoCivil());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {
@@ -51,10 +52,11 @@ public class ClienteDAO {
 				cliente.setCorretorId(rs.getInt("sgr_corretor_nr_id"));
 				cliente.setDataNascimento(rs.getDate("dt_nascimento"));
 				cliente.setEmail(rs.getString("ds_email"));
-				cliente.setEstadoCivil(rs.getString("ds_estado"));
+				cliente.setEstado(rs.getString("ds_estado"));
 				cliente.setGenero(rs.getString("ds_genero"));
 				cliente.setTempoHabilitacao(rs.getInt("nr_tempo"));
 				cliente.setDependente(rs.getInt("nr_dependente"));
+				cliente.setEstadoCivil(rs.getString("ds_estadoc"));
 				clientes.add(cliente);
 			}
 
@@ -96,18 +98,19 @@ public class ClienteDAO {
 	}
 
 	public void update(ClienteModel cliente) {
-		String sql = "update sgr_cliente set sgr_corretor_nr_id=?, nm_cliente=?, dt_nascimento=?, ds_email=?, ds_estado=?, ds_genero=?, nr_tempo=?, nr_dependente=? where nr_cpf=?";
+		String sql = "update sgr_cliente set sgr_corretor_nr_id=?, nm_cliente=?, dt_nascimento=?, ds_email=?, ds_estado=?, ds_genero=?, nr_tempo=?, nr_dependente=?, ds_estadoc=? where nr_cpf=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setInt(1, cliente.getCorretorId());
 			stmt.setString(2, cliente.getNomeCliente());
 			stmt.setDate(3, cliente.getDataNascimento());
 			stmt.setString(4, cliente.getEmail());
-			stmt.setString(5, cliente.getEstadoCivil());
+			stmt.setString(5, cliente.getEstado());
 			stmt.setString(6, cliente.getGenero());
 			stmt.setInt(7, cliente.getTempoHabilitacao());
 			stmt.setInt(8, cliente.getDependente());
-			stmt.setLong(9, cliente.getCpf());
+			stmt.setString(9, cliente.getEstadoCivil());
+			stmt.setLong(10, cliente.getCpf());
 			stmt.execute();
 			stmt.close();
 		} catch (SQLException e) {

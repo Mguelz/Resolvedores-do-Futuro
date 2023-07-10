@@ -8,7 +8,7 @@ public class ClienteModel {
 //	private Date dataNascimento; // Quando fazer amarração com telas colocar o método Date.ValueOf(String);
 //	private String nome;
 //	private String email;
-//	private String estadoCivil;
+//	private String estado;
 //	private String genero;
 //	private String celular;
 //	private int tempoHabilitacao;
@@ -18,25 +18,35 @@ public class ClienteModel {
 	private int corretorId;
 	private Date dataNascimento; // Quando fazer amarração com telas colocar o método Date.ValueOf(String);
 	private String email;
-	private String estadoCivil;
+	private String estado;
 	private String genero;
 	private int tempoHabilitacao;
 	private int dependente;
+	private String estadoCivil;
+
+	public String getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(String estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
 
 	public ClienteModel() {
 	}
 
-	public ClienteModel(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email, String estadoCivil,
-			String genero, int tempoHabilitacao, int dependente) {
+	public ClienteModel(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email,
+			String estado, String genero, int tempoHabilitacao, int dependente, String estadoCivil) {
 		this.cpf = cpf;
 		this.nomeCliente = nomeCliente;
 		this.corretorId = corretorId;
 		this.dataNascimento = dataNascimento;
 		this.email = email;
-		this.estadoCivil = estadoCivil;
+		this.estado = estado;
 		this.genero = genero;
 		this.tempoHabilitacao = tempoHabilitacao;
 		this.dependente = dependente;
+		this.estadoCivil = estadoCivil;
 	}
 
 	public long getCpf() {
@@ -79,12 +89,12 @@ public class ClienteModel {
 		this.email = email;
 	}
 
-	public String getEstadoCivil() {
-		return estadoCivil;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getGenero() {

@@ -9,44 +9,35 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import br.com.fiap.model.ClienteModel;
+
 public class TelaCadastroUsuario3 {
 
 	public JFrame frame;
 	private JTextField digiteCelular;
-	private JTextField digiteSenha;
-	private JTextField digiteNome;
 	private JTextField digiteCpf;
 	private JTextField digiteDataNasc;
 	private JButton proxPag;
 	String formato = "dd/MM/yyyy";
 	String dataString;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroUsuario3 window = new TelaCadastroUsuario3();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private ClienteModel c2;
+	private double cotacaoUsuario3;
 	/**
 	 * Create the application.
+	 * 
 	 */
+	public TelaCadastroUsuario3(ClienteModel clienteModel, double cotacao) {
+		this.c2 = clienteModel;
+		this.cotacaoUsuario3 = cotacao;
+		initialize();
+	}
+
 	public TelaCadastroUsuario3() {
 		initialize();
 	}
@@ -60,8 +51,8 @@ public class TelaCadastroUsuario3 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		ImageIcon image = new ImageIcon("LogoTokio.png"); // criando o ícone da imagem
-		frame.setIconImage(image.getImage()); // mudando o ícone do frame
+		ImageIcon image = new ImageIcon("LogoTokio.png");
+		frame.setIconImage(image.getImage());
 
 		digiteCelular = new JTextField();
 		digiteCelular.setBackground(new Color(244, 244, 244));
@@ -99,28 +90,32 @@ public class TelaCadastroUsuario3 {
 
 		proxPag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario();
-				telaCadastro.frame.setVisible(true);
+				//Pega os dados
 				String cpf = new String(digiteCpf.getText());
 				String dataNascimento = new String(digiteDataNasc.getText());
 				String celular = new String(digiteCelular.getText());
+				System.out.println(celular);
 				System.out.println("CPF: " + cpf + " Celular: " + celular + " Data de nascimento: " + dataNascimento);
-
+				//Bloco de conversão de data
 				dataString = digiteDataNasc.getText();
-
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern(formato);
+				LocalDate data = LocalDate.parse(dataString, formatter);
+				System.out.println("Data convertida: " + data);
+				Date dataSql = Date.valueOf(data);
+				System.out.println("Data SQL: " + dataSql);
+				//Fim do bloco
+				
+				//Salva as variáveis abaixo.
+				c2.setCpf(Long.parseLong(cpf));
+				c2.setDataNascimento(dataSql);
+				c2.setCelularCliente(celular);
+				TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario(c2, cotacaoUsuario3);
+				telaCadastro.frame.setVisible(true);
 
-				try {
-					LocalDate data = LocalDate.parse(dataString, formatter);
-					System.out.println("Data convertida: " + data);
-
-					// Converter para java.sql.Date
-					Date dataSql = Date.valueOf(data);
-					System.out.println("Data SQL: " + dataSql);
-				} catch (DateTimeParseException e1) {
-					System.out.println("Erro ao converter data: " + e1.getMessage());
-				}
-
+				//System.out.println(nome+senha+email);
+				// ModeloTemporario telaModelo = new ModeloTemporario(nome, email, senha, cpf,
+				// celular,dataSql);
+				// telaModelo.executar();
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});
@@ -139,5 +134,5 @@ public class TelaCadastroUsuario3 {
 		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
 		proxPag.setIcon(icon);
 	}
-
+	
 }

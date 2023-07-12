@@ -11,10 +11,11 @@ public class ApoliceModel {
 	private long cpfCliente;
 	private long idVeiculo;
 
-	public ApoliceModel(long idApolice, Date dataEmissao, double valorPremio, String chassi, long cpfCliente,
+	public ApoliceModel(long idApolice,Date dataEmissao ,double valorPremio, String chassi, long cpfCliente,
 			long idVeiculo) {
 		this.idApolice = idApolice;
-		this.dataEmissao = dataEmissao;
+		this.dataEmissao = dataEmissao; 
+//				Date.valueOf(System.currentTimeMillis());
 		this.valorPremio = valorPremio;
 		this.chassi = chassi;
 		this.cpfCliente = cpfCliente;

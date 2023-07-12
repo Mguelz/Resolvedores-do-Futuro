@@ -2,6 +2,10 @@ package br.com.fiap.model;
 
 import java.sql.Date;
 
+import br.com.fiap.util.CriptografiaUtils;
+
+//import br.com.fiap.util.CriptografiaUtils;
+
 public class ClienteModel {
 //	private long cpf;
 //	private int idCorretor;
@@ -22,12 +26,16 @@ public class ClienteModel {
 	private String genero;
 	private int tempoHabilitacao;
 	private int dependente;
+	private String celularCliente;
+	private String senhaCliente;
+	private String estado;
 
 	public ClienteModel() {
 	}
 
-	public ClienteModel(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email, String estadoCivil,
-			String genero, int tempoHabilitacao, int dependente) {
+	public ClienteModel(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email,
+			String estadoCivil, String genero, int tempoHabilitacao, int dependente, String celularCliente,
+			String senhaCliente, String estado) {
 		this.cpf = cpf;
 		this.nomeCliente = nomeCliente;
 		this.corretorId = corretorId;
@@ -37,6 +45,9 @@ public class ClienteModel {
 		this.genero = genero;
 		this.tempoHabilitacao = tempoHabilitacao;
 		this.dependente = dependente;
+		this.celularCliente = celularCliente;
+		this.estado = estado;
+		setSenha(senhaCliente);
 	}
 
 	public long getCpf() {
@@ -110,5 +121,36 @@ public class ClienteModel {
 	public void setDependente(int dependente) {
 		this.dependente = dependente;
 	}
+
+	public String getCelularCliente() {
+		return celularCliente;
+	}
+
+	public void setCelularCliente(String celularCliente) {
+		this.celularCliente = celularCliente;
+	}
+
+	public String getSenhaCliente() {
+		return senhaCliente;
+	}
+	
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+	
+
+	public void setSenha (String senhaCliente) {
+		try {
+			this.senhaCliente = CriptografiaUtils.criptografar(senhaCliente);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }

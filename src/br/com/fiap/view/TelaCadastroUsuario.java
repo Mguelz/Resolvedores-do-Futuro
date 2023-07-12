@@ -1,7 +1,6 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,29 +14,34 @@ import javax.swing.JLabel;
 import javax.swing.LookAndFeel;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
+import br.com.fiap.controller.ClienteController;
+import br.com.fiap.controller.Estado;
+import br.com.fiap.controller.EstadoCivil;
+import br.com.fiap.controller.Genero;
+import br.com.fiap.controller.TempoCnh;
+import br.com.fiap.controller.UtilizacaoCarro;
+import br.com.fiap.model.ClienteModel;
+
 public class TelaCadastroUsuario {
 
 	public JFrame frame;
+	private ClienteModel c3;
+	private double cotacaoCadastroUsuario;
 
 	/**
-	 * Launch the application.
+	 * @wbp.parser.constructor
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroUsuario window = new TelaCadastroUsuario();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public TelaCadastroUsuario(ClienteModel clienteModel, double cotacao) {
+		this.c3 = clienteModel;
+		System.out.println(c3);
+		System.out.println(c3.getNomeCliente() + "/n" + c3.getEmail() + "/n" + c3.getSenhaCliente());
+
+		// cotacao
+		this.cotacaoCadastroUsuario = cotacao;
+
+		initialize();
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public TelaCadastroUsuario() {
 		initialize();
 	}
@@ -58,7 +62,8 @@ public class TelaCadastroUsuario {
 		comboRegiao.setEditable(true);
 		comboRegiao.setFont(new Font("Tahoma", Font.PLAIN, 30));
 
-		comboRegiao.setSelectedItem("Selecione o estado"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+		comboRegiao.setSelectedItem("Selecione o estado"); // deixa um titulo na comboBox -- (selecione o editable no
+															// painel propertis)
 		comboRegiao.addItem("Acre");
 		comboRegiao.addItem("Alagoas");
 		comboRegiao.addItem("Amapá");
@@ -87,7 +92,12 @@ public class TelaCadastroUsuario {
 		comboRegiao.addItem("Tocantins");
 		comboRegiao.addItem("Distrito Federal");
 
-		
+		// cotacao de estado
+		String estadoSelecionado = (String) comboRegiao.getSelectedItem();
+		Estado estadoController = new Estado();
+		cotacaoCadastroUsuario += estadoController.aplicaTaxa(estadoSelecionado);
+//		cotacaoCadastroUsuario = Double.parseDouble(estadoSelecionado);
+		System.out.println("estado selecionado: " + estadoSelecionado + " - " + cotacaoCadastroUsuario);
 
 		comboRegiao.setToolTipText("Tipo de utilização");
 		comboRegiao.setForeground(new Color(0, 103, 80));
@@ -152,10 +162,19 @@ public class TelaCadastroUsuario {
 				arrowButton.setVisible(true);
 			}
 		});
-		
-		comboSexo.setSelectedItem("Selecione o genêro"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+
+		comboSexo.setSelectedItem("Selecione o gênero"); // deixa um titulo na comboBox -- (selecione o editable no
+															// painel propertis)
 		comboSexo.addItem("Masculino");
 		comboSexo.addItem("Feminino");
+		comboSexo.addItem("Outros");
+		comboSexo.addItem("Prefiro não Informar");
+
+		// cotacao de genero
+		String generoSelecionado = (String) comboRegiao.getSelectedItem();
+		Genero ge = new Genero();
+		cotacaoCadastroUsuario += ge.AplicaTaxaGenero(generoSelecionado);
+		System.out.println("genero selecionado: " + generoSelecionado + " - " + cotacaoCadastroUsuario);
 
 		JComboBox<String> comboEsCivil = new JComboBox<String>();
 		comboEsCivil.setEditable(true);
@@ -190,13 +209,20 @@ public class TelaCadastroUsuario {
 			}
 		});
 
-		comboEsCivil.setSelectedItem("Estado Civil"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+		comboEsCivil.setSelectedItem("Estado Civil"); // deixa um titulo na comboBox -- (selecione o editable no painel
+														// propertis)
 		comboEsCivil.addItem("Casado(a)");
 		comboEsCivil.addItem("Solteiro(a)");
 		comboEsCivil.addItem("Viúvo(a)");
 		comboEsCivil.addItem("Separado(a)");
 		comboEsCivil.addItem("Divorciado(a)");
 		comboEsCivil.addItem("União Estável");
+
+		// cotacao de estado civil
+		String estadoCivilSelecionado = (String) comboRegiao.getSelectedItem();
+		EstadoCivil es = new EstadoCivil();
+		cotacaoCadastroUsuario += es.aplicaTaxaEstadoCivil(estadoCivilSelecionado);
+		System.out.println("estado civil: " + estadoCivilSelecionado + " - " + cotacaoCadastroUsuario);
 
 		JComboBox<String> comboTempCnh = new JComboBox<String>();
 		comboTempCnh.setEditable(true);
@@ -207,9 +233,16 @@ public class TelaCadastroUsuario {
 		comboTempCnh.setBounds(594, 483, 344, 87);
 		frame.getContentPane().add(comboTempCnh);
 
-		comboTempCnh.setSelectedItem("Tempo de CNH"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+		comboTempCnh.setSelectedItem("Tempo de CNH"); // deixa um titulo na comboBox -- (selecione o editable no painel
+														// propertis)
 		comboTempCnh.addItem("Menos de 2 anos");
 		comboTempCnh.addItem("2 anos ou mais");
+
+		// cotacao da utilizacao do carro
+		String utilizacaoSelecionado = (String) comboTempCnh.getSelectedItem();
+		TempoCnh tc = new TempoCnh();
+		cotacaoCadastroUsuario += tc.aplicaTaxa(utilizacaoSelecionado);
+		System.out.println("TempoCnhselecionado: " + utilizacaoSelecionado + " cotacao: " + cotacaoCadastroUsuario + " retorno - " + tc.aplicaTaxa(utilizacaoSelecionado));
 
 		comboTempCnh.setUI(new BasicComboBoxUI() {
 			@Override
@@ -244,14 +277,32 @@ public class TelaCadastroUsuario {
 
 		proxPag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroVeiculo telaCadastro = new TelaCadastroVeiculo();
-				telaCadastro.frame.setVisible(true);
+				ClienteController cc = new ClienteController();
+				int tcnh;
 				String tempCnh = (String) comboTempCnh.getSelectedItem();
+				if (tempCnh.equals("2 anos ou mais")) {
+					tcnh = 1;
+				} else {
+					tcnh = 0;
+				}
 				String estadoCivil = (String) comboEsCivil.getSelectedItem();
 				String sexo = (String) comboSexo.getSelectedItem();
+				if (sexo.equals("Masculino")) {
+					sexo = "M";
+				} else {
+					sexo = "F";
+				}
 				String estado = (String) comboRegiao.getSelectedItem();
-			    System.out.println(tempCnh+" "+ estadoCivil + " "+ sexo+" "+estado);
-				
+				// System.out.println(tempCnh+" "+ estadoCivil + " "+ sexo+" "+estado);
+
+				c3.setEstado(estado);
+				c3.setEstadoCivil(estadoCivil);
+				c3.setGenero(sexo);
+				c3.setTempoHabilitacao(tcnh);
+//				c3.setCorretorId(1);
+//				cc.cadastrarCliente(c3);
+				TelaCadastroVeiculo telaCadastro = new TelaCadastroVeiculo(c3, cotacaoCadastroUsuario);
+				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});

@@ -12,32 +12,29 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import br.com.fiap.controller.EscolhaSeguro;
+
+import java.awt.event.MouseAdapter;
+
 public class TelaEscolherSeguro {
 
 	public JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaEscolherSeguro window = new TelaEscolherSeguro();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private double cotacaoEscolherSeguro;
 
 	/**
 	 * Create the application.
 	 */
 	public TelaEscolherSeguro() {
 		initialize();
+
+		// cotacao
+
 	}
+	
+//	// criei isso para ver se rodava, mas continua nao passando dessa telas
+//	public TelaEscolherSeguro(double cotacaoEscolherSeguro) {
+//		this.cotacaoEscolherSeguro = cotacaoEscolherSeguro;
+//	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -52,16 +49,24 @@ public class TelaEscolherSeguro {
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
 		JButton btnCompreensivoTotal = new JButton("Compreensivo Total");
+		btnCompreensivoTotal.addMouseListener(new MouseAdapter() {
+		});
 		btnCompreensivoTotal.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	 JButton source = (JButton) e.getSource();
-                 String buttonText = source.getText();
-                 System.out.println(buttonText);
-                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
-                telaCadastro.frame.setVisible(true);
-                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
-            }
-        });
+			public void actionPerformed(ActionEvent e) {
+				JButton source = (JButton) e.getSource();
+				String buttonText = source.getText();
+				System.out.println(buttonText);
+
+				// cotacao
+				EscolhaSeguro es = new EscolhaSeguro();
+				cotacaoEscolherSeguro = es.aplicaTaxaEscolhaSeguro(buttonText);
+				System.out.println("\nescolha " + btnCompreensivoTotal.getText() + " - " + cotacaoEscolherSeguro);
+
+				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro);
+				telaCadastro.frame.setVisible(true);
+				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+			}
+		});
 
 		btnCompreensivoTotal.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		btnCompreensivoTotal.setBackground(new Color(0, 103, 80));
@@ -74,15 +79,21 @@ public class TelaEscolherSeguro {
 
 		JButton btnPerdaTotalPor = new JButton("Perda Total Por Colisão");
 		btnPerdaTotalPor.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	JButton source = (JButton) e.getSource();
-                String buttonText = source.getText();
-                System.out.println(buttonText);
-                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
-                telaCadastro.frame.setVisible(true);
-                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
-            }
-        });
+			public void actionPerformed(ActionEvent e) {
+				JButton source = (JButton) e.getSource();
+				String buttonText = source.getText();
+				System.out.println(buttonText);
+
+				// cotacao
+				EscolhaSeguro es = new EscolhaSeguro();
+				cotacaoEscolherSeguro = es.aplicaTaxaEscolhaSeguro(buttonText);
+				System.out.println("\nescolha " + btnPerdaTotalPor.getText() + " - " + cotacaoEscolherSeguro);
+
+				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro); // aqui tava cotacaoEscolherSeguro
+				telaCadastro.frame.setVisible(true);
+				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+			}
+		});
 		btnPerdaTotalPor.setForeground(Color.WHITE);
 		btnPerdaTotalPor.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		btnPerdaTotalPor.setFocusPainted(false);
@@ -94,15 +105,21 @@ public class TelaEscolherSeguro {
 
 		JButton btnRouboEFurto = new JButton("Roubo e Furto");
 		btnRouboEFurto.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            	JButton source = (JButton) e.getSource();
-                String buttonText = source.getText();
-                System.out.println(buttonText);
-                TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
-                telaCadastro.frame.setVisible(true);
-                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
-            }
-        });
+			public void actionPerformed(ActionEvent e) {
+				JButton source = (JButton) e.getSource();
+				String buttonText = source.getText();
+				System.out.println(buttonText);
+
+				// cotacao
+				EscolhaSeguro es = new EscolhaSeguro();
+				cotacaoEscolherSeguro = es.aplicaTaxaEscolhaSeguro(buttonText);
+				System.out.println("\nescolha " + btnRouboEFurto.getText() + " - " + cotacaoEscolherSeguro);
+
+				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro);
+				telaCadastro.frame.setVisible(true);
+				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+			}
+		});
 
 		btnRouboEFurto.setForeground(Color.WHITE);
 		btnRouboEFurto.setFont(new Font("SansSerif", Font.PLAIN, 30));
@@ -112,33 +129,24 @@ public class TelaEscolherSeguro {
 		btnRouboEFurto.setBackground(new Color(0, 103, 80));
 		btnRouboEFurto.setBounds(976, 438, 314, 148);
 		frame.getContentPane().add(btnRouboEFurto);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+//		
+//		if (btnRouboEFurto.isEnabled()) {
+//			
+//			btnRouboEFurto.addActionListener(new ActionListener() {
+//				public void actionPerformed(ActionEvent e) {
+//					JButton source = (JButton) e.getSource();
+//					String buttonText = source.getText();
+//					System.out.println(buttonText);
+//
+//					TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2();
+//					telaCadastro.frame.setVisible(true);
+//					frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+//				}
+//			});
+//		}
+
+		// System.out.println(tipoSeguro);
 
 		// deixar em ultimo!!!!!!
 		JLabel lblNewLabel = new JLabel("");
@@ -149,4 +157,5 @@ public class TelaEscolherSeguro {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 	}
+
 }

@@ -1,11 +1,9 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,38 +11,26 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import br.com.fiap.model.ClienteModel;
+
 public class TelaCadastroUsuario2 {
 
 	JFrame frame;
 	private JTextField digiteEmail;
-
 	private JTextField digiteNome;
 	private JButton proxPag;
 	private JPasswordField digiteSenha;
-	
-	
+	private ClienteModel c1 = new ClienteModel();
+	private double cotacaoUsuario2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroUsuario2 window = new TelaCadastroUsuario2();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public TelaCadastroUsuario2(double cotacao) {
+		this.cotacaoUsuario2 = cotacao;
+		initialize();
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public TelaCadastroUsuario2() {
 		initialize();
+
 	}
 
 	/**
@@ -56,8 +42,8 @@ public class TelaCadastroUsuario2 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		ImageIcon image = new ImageIcon("LogoTokio.png"); // criando o ícone da imagem
-		frame.setIconImage(image.getImage()); // mudando o ícone do frame
+		ImageIcon image = new ImageIcon("LogoTokio.png");
+		frame.setIconImage(image.getImage());
 
 		digiteEmail = new JTextField();
 		digiteEmail.setBackground(new Color(244, 244, 244));
@@ -85,13 +71,6 @@ public class TelaCadastroUsuario2 {
 		digiteSenha.setBackground(new Color(244, 244, 244));
 		digiteSenha.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		frame.getContentPane().add(digiteSenha);
-		
-		
-		
-		
-		
-	
-		
 
 		proxPag = new JButton("New button");
 		proxPag.setBorderPainted(false);
@@ -102,35 +81,30 @@ public class TelaCadastroUsuario2 {
 
 		proxPag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroUsuario3 telaCadastro = new TelaCadastroUsuario3();
+				String nome = digiteNome.getText();
+				String email = digiteEmail.getText();
+				String senha = digiteSenha.getText();
+
+				c1.setNomeCliente(nome);
+				c1.setEmail(email);
+				c1.setSenha(senha);
+				TelaCadastroUsuario3 telaCadastro = new TelaCadastroUsuario3(c1, cotacaoUsuario2);
 				telaCadastro.frame.setVisible(true);
-				 String email = new String(digiteEmail.getText());
-				 String senha = new String(digiteSenha.getPassword());
-				 String nome = new String(digiteNome.getText());
-				 
-				 System.out.println("Email: "+email +" Senha: "+ senha + " nome: " + nome);
-				 
-				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+//                TelaInicial.mt.salvar(nome, email, senha);
+				frame.dispose();
 			}
 		});
 
-		// deixar em ultimo!!!!!!
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(TelaCadastroUsuario2.class.getResource("/Usuário.png")));
 		lblNewLabel.setBounds(0, -165, 1884, 1092);
 		frame.getContentPane().add(lblNewLabel);
 
-		// frame.setLocationRelativeTo(null);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		
-
 	}
 
 	private void adicionarIcone(JButton btnNewButton) {
 		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
 		btnNewButton.setIcon(icon);
 	}
-
-	
 }

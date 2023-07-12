@@ -1,7 +1,6 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,34 +15,31 @@ import javax.swing.JTextField;
 import javax.swing.LookAndFeel;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
+import br.com.fiap.controller.ModeloCarro;
+import br.com.fiap.model.ClienteModel;
+import br.com.fiap.model.VeiculoModel;
+
 public class TelaCadastroVeiculo {
 
 	public JFrame frame;
 	private JTextField digitePlaca;
 	private JTextField digiteChassi;
 	private JComboBox<String> tipoUtilizacao;
-	private JComboBox<String> comboModelo;
+	private JComboBox<String> comboMarca;
 	private JButton proxPag;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroVeiculo window = new TelaCadastroVeiculo();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private ClienteModel c4;
+	private VeiculoModel v1 = new VeiculoModel();
+	private double cotacaoVeiculo;
 
 	/**
 	 * Create the application.
 	 */
+	public TelaCadastroVeiculo(ClienteModel cliente, double cotacaoVeiculo) {
+		this.c4 = cliente;
+		this.cotacaoVeiculo = cotacaoVeiculo;
+		initialize();
+	}
+
 	public TelaCadastroVeiculo() {
 		initialize();
 	}
@@ -78,16 +74,28 @@ public class TelaCadastroVeiculo {
 		digiteChassi.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		frame.getContentPane().add(digiteChassi);
 
-		comboModelo = new JComboBox<String>();
-		comboModelo.setToolTipText("Modelo Do Veiculo");
-		comboModelo.setMaximumRowCount(3);
-		comboModelo.setForeground(new Color(0, 103, 80));
-		comboModelo.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		comboModelo.setBackground(new Color(244, 244, 244));
-		comboModelo.setBounds(183, 522, 344, 87);
-		frame.getContentPane().add(comboModelo);
+		comboMarca = new JComboBox<String>();
+		comboMarca.setToolTipText("Marca do veiculo");
+		comboMarca.setMaximumRowCount(3);
+		comboMarca.setForeground(new Color(0, 103, 80));
+		comboMarca.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		comboMarca.setBackground(new Color(244, 244, 244));
+		comboMarca.setBounds(183, 522, 344, 87);
+		frame.getContentPane().add(comboMarca);
 
-		comboModelo.setUI(new BasicComboBoxUI() {
+		comboMarca.addItem("Fiat");
+		comboMarca.addItem("Toyota");
+		comboMarca.addItem("Chevrolet");
+		comboMarca.addItem("Hyundai");
+		comboMarca.addItem("Volkswagen");
+
+		// cotacao da marca do veiculo
+		String marcaSelecionada = (String) comboMarca.getSelectedItem();
+		ModeloCarro mc = new ModeloCarro();
+		double valorCarroSelecionado = mc.aplicaTaxaModeloCarro(marcaSelecionada);
+		System.out.println("marca selecionado: " + marcaSelecionada + " - " + valorCarroSelecionado);
+
+		comboMarca.setUI(new BasicComboBoxUI() {
 			@Override
 			protected JButton createArrowButton() {
 				JButton button = new JButton();
@@ -120,11 +128,19 @@ public class TelaCadastroVeiculo {
 
 		proxPag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2();
+				String placa = new String(digitePlaca.getText());
+				String chassi = new String(digiteChassi.getText());
+				String marca = (String) (comboMarca.getSelectedItem());
+				System.out.println(marca);
+				v1.setNumeroChassi(chassi);
+				v1.setPlaca(placa);
+				v1.setFabricante(marca);
+				System.out.println(c4.getCpf());
+				v1.setCpfCliente(c4.getCpf());
+				System.out.println(v1.getCpfCliente());
+				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2(c4, v1, cotacaoVeiculo);
 				telaCadastro.frame.setVisible(true);
-				String placa =  new String (digitePlaca.getText());
-				String chassi =  new String  (digiteChassi.getText());
-				System.out.println("Placa:  "+placa +  " Numero Chassi: "+chassi);
+				System.out.println("Placa:  " + placa + " Numero Chassi: " + chassi);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});
@@ -144,5 +160,5 @@ public class TelaCadastroVeiculo {
 		ImageIcon icon = new ImageIcon(TelaGerarApolice.class.getResource("setaVoltar.png"));
 		btnNewButton.setIcon(icon);
 	}
-	
+
 }

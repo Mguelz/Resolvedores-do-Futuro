@@ -12,9 +12,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class TelaInicial {
+import br.com.fiap.controller.ClienteController;
+import br.com.fiap.model.ClienteModel;
 
+public class TelaInicial {
+	//DTO(Data Transfer Object).
 	private JFrame frame;
+	private ClienteModel c1 = new ClienteModel();
 
 	/**
 	 * Launch the application.
@@ -52,23 +56,35 @@ public class TelaInicial {
 		
 		JButton btnIniciarCotacao = new JButton("Iniciar Cotação");
 		btnIniciarCotacao.setForeground(Color.WHITE);
-		btnIniciarCotacao.setFont(new Font("SansSerif", Font.PLAIN, 40));
+		btnIniciarCotacao.setFont(new Font("SansSerif", Font.PLAIN, 25));
 		btnIniciarCotacao.setFocusPainted(false);
 		btnIniciarCotacao.setBorderPainted(false);
 		btnIniciarCotacao.setBorder(null);
 		btnIniciarCotacao.setBackground(new Color(0, 103, 80));
-		btnIniciarCotacao.setBounds(138, 528, 385, 111);
+		btnIniciarCotacao.setBounds(109, 500, 189, 80);
 		frame.getContentPane().add(btnIniciarCotacao);
 		
+		
+		JButton btnConfigurarDados = new JButton("Configurar Dados");
+		btnConfigurarDados.setForeground(Color.WHITE);
+		btnConfigurarDados.setFont(new Font("SansSerif", Font.PLAIN, 23));
+		btnConfigurarDados.setFocusPainted(false);
+		btnConfigurarDados.setBorderPainted(false);
+		btnConfigurarDados.setBorder(null);
+		btnConfigurarDados.setBackground(new Color(0, 103, 80));
+		btnConfigurarDados.setBounds(448, 500, 189, 80);
+		frame.getContentPane().add(btnConfigurarDados);
 		
 
 		ImageIcon image = new ImageIcon("LogoTokio.png"); //criando o ícone da imagem
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 		
 		
+		
 
         btnIniciarCotacao.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 TelaEscolherSeguro telaCadastro = new TelaEscolherSeguro();
                 telaCadastro.frame.setVisible(true);
                frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)

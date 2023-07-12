@@ -9,8 +9,13 @@ import br.com.fiap.repository.ApoliceDAO;
 public class ApoliceController {
     private ApoliceDAO apoliceDAO;
 
-    public ApoliceController() throws SQLException {
-        apoliceDAO = new ApoliceDAO();
+    public ApoliceController() {
+        try {
+			apoliceDAO = new ApoliceDAO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void inserirApolice(ApoliceModel apolice) {

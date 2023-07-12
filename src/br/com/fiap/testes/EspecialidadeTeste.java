@@ -1,9 +1,7 @@
 package br.com.fiap.testes;
 
-import java.util.List;
-
 import br.com.fiap.controller.EspecialidadeController;
-import br.com.fiap.model.EspecialidadeModel;
+
 
 public class EspecialidadeTeste {
 

@@ -19,10 +19,7 @@ public class VeiculoDAO {
 
 	// Insert
 	public void insert(VeiculoModel veiculo) {
-		String sql = "insert into SGR_VEICULO(DS_CHASSI, DS_PLACA, "
-				+ "DS_MODELO, NR_CARRO_ZERO, DT_FABRICACAO, DS_FABRICACANTE, DS_COMBUSTIVEL,"
-				+ " NR_GARAGEM, BL_ISENCAO, BL_KITGAS, DS_UTILIZACAO,VL_PRECO, SGR_CLIENTE_NR_CPF, SGR_CLIENTE_NR_ID )"
-				+ " values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into SGR_VEICULO(DS_CHASSI, DS_PLACA, NM_MODELO, BL_CARROZERO, DT_FABRICACAO, NM_FABRICANTE, NM_COMBUSTIVEL, NR_GARAGEM, BL_ISENCAO, BL_KITGAS, DS_UTILIZACAO, VL_PRECO, SGR_CLIENTE_NR_CPF, SGR_CLIENTE_NR_ID ) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 
@@ -62,7 +59,7 @@ public class VeiculoDAO {
 				veiculo.setModelo(rs.getString("NM_MODELO"));
 				veiculo.setCarroZero(rs.getBoolean("BL_CARROZERO"));
 				veiculo.setDataFabricacao(rs.getString("DT_FABRICACAO"));
-				veiculo.setFabricante(rs.getString("NM_FABRICACANTE"));
+				veiculo.setFabricante(rs.getString("NM_FABRICANTE"));
 				veiculo.setCombustivel(rs.getString("NM_COMBUSTIVEL"));
 				veiculo.setGaragem(rs.getByte("NR_GARAGEM"));
 				veiculo.setIsencao(rs.getBoolean("BL_ISENCAO"));
@@ -94,10 +91,10 @@ public class VeiculoDAO {
 				veiculo = new VeiculoModel();
 				veiculo.setNumeroChassi(rs.getString("DS_CHASSI"));
 				veiculo.setPlaca(rs.getString("DS_PLACA"));
-				veiculo.setModelo(rs.getString("DS_MODELO"));
+				veiculo.setModelo(rs.getString("NM_MODELO"));
 				veiculo.setDataFabricacao(rs.getString("DT_FABRICACAO"));
-				veiculo.setFabricante(rs.getString("DS_FABRICACANTE"));
-				veiculo.setCombustivel(rs.getString("DS_COMBUSTIVEL"));
+				veiculo.setFabricante(rs.getString("NM_FABRICANTE"));
+				veiculo.setCombustivel(rs.getString("NM_COMBUSTIVEL"));
 				veiculo.setGaragem(rs.getByte("NR_GARAGEM"));
 				veiculo.setIsencao(rs.getBoolean("BL_ISENCAO"));
 				veiculo.setKitgas(rs.getBoolean("BL_KITGAS"));
@@ -131,10 +128,10 @@ public class VeiculoDAO {
 	// update
 	public void update(VeiculoModel veiculo) {
 		String sql = "update SGR_VEICULO set DS_PLACA = ?, NM_MODELO = ?, BL_CARROZERO = ?,"
-				+ " DT_FABRICACAO = ?,DS_FABRICANTE, DS_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
+				+ " DT_FABRICACAO = ?,NM_FABRICANTE, NM_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
 				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ?, SGR_CLIENTE_NR_CPF = ?, SGR_CLIENTE_NR_ID = ?, VL_PRECO = ?,  where DS_CHASSI = ?";
-//		String sql = "update SGR_VEICULO set DS_PLACA = ?, DS_MODELO = ?, DT_FABRICACAO = ?,"
-//				+ " DS_FABRICACANTE = ?, DS_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
+//		String sql = "update SGR_VEICULO set DS_PLACA = ?, NM_MODELO = ?, DT_FABRICACAO = ?,"
+//				+ " NM_FABRICANTE = ?, NM_COMBUSTIVEL = ?, NR_GARAGEM = ?, "
 //				+ "BL_ISENCAO = ?, BL_KITGAS = ?, DS_UTILIZACAO = ?, VL_PRECO = ?, SGR_CLIENTE_NR_CPF = ?, SGR_CLIENTE_NR_ID = ?  where DS_CHASSI = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);

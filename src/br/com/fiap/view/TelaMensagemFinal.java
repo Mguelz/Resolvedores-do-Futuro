@@ -15,22 +15,10 @@ import javax.swing.JLabel;
 public class TelaMensagemFinal {
 
 	public JFrame frame;
+	private String nome;
+	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaMensagemFinal window = new TelaMensagemFinal();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the application.
@@ -38,6 +26,11 @@ public class TelaMensagemFinal {
 	public TelaMensagemFinal() {
 		initialize();
 	}
+	public TelaMensagemFinal(String nome) {
+        this.nome = nome;
+        initialize();
+    }
+	
 
 	/**
 	 * Initialize the contents of the frame.

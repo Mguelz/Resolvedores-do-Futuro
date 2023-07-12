@@ -1,7 +1,6 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,30 +10,34 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import br.com.fiap.controller.ClienteController;
+import br.com.fiap.controller.Dependente;
+import br.com.fiap.controller.Ehkm0;
+import br.com.fiap.controller.VeiculoController;
+import br.com.fiap.model.ClienteModel;
+import br.com.fiap.model.VeiculoModel;
+
 public class TelaCadastroDependente {
 
 	public JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroDependente window = new TelaCadastroDependente();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public ClienteModel c8;
+	public VeiculoModel v3;
+	public ClienteController cc = new ClienteController();
+	public VeiculoController vc = new VeiculoController();
+	private double cotacaoCadastroDependente;
 
 	/**
 	 * Create the application.
 	 */
+
 	public TelaCadastroDependente() {
+		initialize();
+	}
+
+	public TelaCadastroDependente(ClienteModel c8, VeiculoModel v3, double cotacao) {
+		this.c8 = c8;
+		this.v3 = v3;
+		this.cotacaoCadastroDependente = cotacao;
 		initialize();
 	}
 
@@ -67,6 +70,26 @@ public class TelaCadastroDependente {
 		checkNao.setBounds(153, 583, 60, 54);
 		frame.getContentPane().add(checkNao);
 
+		// cotacao dependente
+		Dependente dp = new Dependente();
+		if (checkNao.isSelected()) {
+			cotacaoCadastroDependente += dp.aplicaTaxa("Não");
+			System.out.println("nenhum dependente selecionado - cotacao " + cotacaoCadastroDependente + " return: " + cotacaoCadastroDependente);
+		} else if (checkMasc.isSelected()) {
+			cotacaoCadastroDependente += dp.aplicaTaxa("Masculino");
+			System.out.println("dependente M selecionado - cotacao " + cotacaoCadastroDependente + " return: " + cotacaoCadastroDependente);
+		}
+		if (checkFem.isSelected()) {
+			cotacaoCadastroDependente += dp.aplicaTaxa("Feminino");
+			System.out.println("dependente F selecionado - cotacao " + cotacaoCadastroDependente + " return: " + cotacaoCadastroDependente);
+		}
+
+//		Ehkm0 km0 = new Ehkm0();
+//		if (kmVeiculoSim.isSelected()) {
+//			cotacaoDadosSeguro += km0.aplicaTaxaEh0Km("Sim");
+//			System.out.println("Isensão Fiscal selecionado: Sim --> " + cotacaoDadosSeguro);
+//		}
+
 		JButton proxPag = new JButton("New button");
 		proxPag.setBorderPainted(false);
 		proxPag.setBackground(new Color(0, 103, 80));
@@ -76,28 +99,21 @@ public class TelaCadastroDependente {
 
 		proxPag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				if (checkFem.isSelected()) {
+					c8.setDependente(1);
+				} else if (checkNao.isSelected()) {
+					c8.setDependente(2);
+				} else {
+					c8.setDependente(0);
+				}
+
+				System.out.println(c8.getCpf() + "||" + "||" + c8.getCorretorId());
+				System.out.println(v3.getCpfCliente() + "||" + v3.getIdCliente() + "||" + v3.getNumeroChassi());
+				cc.cadastrarCliente(c8);
+				vc.cadastrarVeiculo(v3);
 				TelaGerarApolice telaCadastro = new TelaGerarApolice();
 				telaCadastro.frame.setVisible(true);
-				
-				 if (checkFem.isSelected()) {
-			            System.out.println("Checkbox Feminino selecionado");
-			        } else {
-			            System.out.println("Checkbox Feminimo deselecionado");
-			        }
-				 
-				 if (checkNao.isSelected()) {
-			            System.out.println("Checkbox Nao possuo selecionado");
-			        } else {
-			            System.out.println("Checkbox Nao possuo deselecionado");
-			        }
-				 
-				 
-				 if (checkMasc.isSelected()) {
-			            System.out.println("Checkbox masculino selecionado");
-			        } else {
-			            System.out.println("Checkbox masculino deselecionado");
-			        }
-				
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});

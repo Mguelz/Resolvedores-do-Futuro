@@ -27,6 +27,7 @@ public class TelaCadastroUsuario {
 	public JFrame frame;
 	private ClienteModel c3;
 	private double cotacaoCadastroUsuario;
+	private double valorCarroSelecionado;
 
 	/**
 	 * @wbp.parser.constructor
@@ -301,7 +302,7 @@ public class TelaCadastroUsuario {
 				c3.setTempoHabilitacao(tcnh);
 //				c3.setCorretorId(1);
 //				cc.cadastrarCliente(c3);
-				TelaCadastroVeiculo telaCadastro = new TelaCadastroVeiculo(c3, cotacaoCadastroUsuario);
+				TelaCadastroVeiculo telaCadastro = new TelaCadastroVeiculo(c3, cotacaoCadastroUsuario, valorCarroSelecionado);
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}

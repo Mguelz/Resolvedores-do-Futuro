@@ -30,13 +30,15 @@ public class TelaCadastroVeiculo {
 	private ClienteModel c4;
 	private VeiculoModel v1 = new VeiculoModel();
 	private double cotacaoVeiculo;
+	private double valorCarroSelecionado;
 
 	/**
 	 * Create the application.
 	 */
-	public TelaCadastroVeiculo(ClienteModel cliente, double cotacaoVeiculo) {
+	public TelaCadastroVeiculo(ClienteModel cliente, double cotacaoVeiculo, double valorCarroSelecionado) {
 		this.c4 = cliente;
 		this.cotacaoVeiculo = cotacaoVeiculo;
+		this.valorCarroSelecionado = valorCarroSelecionado;
 		initialize();
 	}
 
@@ -92,7 +94,7 @@ public class TelaCadastroVeiculo {
 		// cotacao da marca do veiculo
 		String marcaSelecionada = (String) comboMarca.getSelectedItem();
 		ModeloCarro mc = new ModeloCarro();
-		double valorCarroSelecionado = mc.aplicaTaxaModeloCarro(marcaSelecionada);
+		valorCarroSelecionado = mc.aplicaTaxaModeloCarro(marcaSelecionada);
 		System.out.println("marca selecionado: " + marcaSelecionada + " - " + valorCarroSelecionado);
 
 		comboMarca.setUI(new BasicComboBoxUI() {
@@ -134,11 +136,11 @@ public class TelaCadastroVeiculo {
 				System.out.println(marca);
 				v1.setNumeroChassi(chassi);
 				v1.setPlaca(placa);
-				v1.setFabricante(marca);
+				v1.setFabricante(marca); // TODO 
 				System.out.println(c4.getCpf());
 				v1.setCpfCliente(c4.getCpf());
 				System.out.println(v1.getCpfCliente());
-				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2(c4, v1, cotacaoVeiculo);
+				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2(c4, v1, cotacaoVeiculo, valorCarroSelecionado);
 				telaCadastro.frame.setVisible(true);
 				System.out.println("Placa:  " + placa + " Numero Chassi: " + chassi);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)

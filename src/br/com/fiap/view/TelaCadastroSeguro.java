@@ -25,11 +25,13 @@ public class TelaCadastroSeguro {
 	public VeiculoModel v3;
 	public ClienteModel c7;
 	private double cotacaoCadastroSeguro;
+	private double valorCarroSelecionado;
 
-	public TelaCadastroSeguro(VeiculoModel v3, ClienteModel c7, double cotacao) {
+	public TelaCadastroSeguro(VeiculoModel v3, ClienteModel c7, double cotacao, double valorCarroSelecionado) {
 		this.v3 = v3;
 		this.c7 = c7;
 		this.cotacaoCadastroSeguro = cotacao;
+		this.valorCarroSelecionado = valorCarroSelecionado;
 		initialize();
 	}
 
@@ -65,7 +67,8 @@ public class TelaCadastroSeguro {
 		String utilizacaoSelecionado = (String) tipoUtilizacao.getSelectedItem();
 		UtilizacaoCarro uc = new UtilizacaoCarro();
 		cotacaoCadastroSeguro += uc.aplicaTaxaUtilizacaoCarro(utilizacaoSelecionado);
-		System.out.println("utilizacao selecionado: " + utilizacaoSelecionado + " cotacao: " + cotacaoCadastroSeguro + " retorno - " + uc.aplicaTaxaUtilizacaoCarro(utilizacaoSelecionado));
+		System.out.println("utilizacao selecionado: " + utilizacaoSelecionado + " cotacao: " + cotacaoCadastroSeguro
+				+ " retorno - " + uc.aplicaTaxaUtilizacaoCarro(utilizacaoSelecionado));
 
 		tipoUtilizacao.setToolTipText("Tipo de utilização");
 		tipoUtilizacao.setForeground(new Color(0, 103, 80));
@@ -152,7 +155,8 @@ public class TelaCadastroSeguro {
 		String garagemSelecionado = (String) garagem.getSelectedItem();
 		Garagem ga = new Garagem();
 		cotacaoCadastroSeguro += ga.AplicaTaxaGaragem(garagemSelecionado);
-		System.out.println("garagem selecionada: " + garagemSelecionado + " cotacao: " + cotacaoCadastroSeguro + " return " + ga.AplicaTaxaGaragem(garagemSelecionado));
+		System.out.println("garagem selecionada: " + garagemSelecionado + " cotacao: " + cotacaoCadastroSeguro
+				+ " return " + ga.AplicaTaxaGaragem(garagemSelecionado));
 
 		proxPag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -173,7 +177,7 @@ public class TelaCadastroSeguro {
 
 				v3.setGaragem(tipoGaragem);
 				v3.setUtilizacao(tpUtilizacao);
-				TelaCadastroDependente telaCadastro = new TelaCadastroDependente(c7, v3, cotacaoCadastroSeguro);
+				TelaCadastroDependente telaCadastro = new TelaCadastroDependente(c7, v3, cotacaoCadastroSeguro, valorCarroSelecionado);
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}

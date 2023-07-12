@@ -59,8 +59,8 @@ public class TelaEscolherSeguro {
 
 				// cotacao
 				EscolhaSeguro es = new EscolhaSeguro();
-				cotacaoEscolherSeguro = es.aplicaTaxaEscolhaSeguro(buttonText);
-				System.out.println("\nescolha " + btnCompreensivoTotal.getText() + " - " + cotacaoEscolherSeguro);
+				cotacaoEscolherSeguro = 0.09723;
+				System.out.println("\nescolha " + btnCompreensivoTotal.getText() + " - " + cotacaoEscolherSeguro + " retorno: " + es.aplicaTaxaEscolhaSeguro(buttonText));
 
 				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro);
 				telaCadastro.frame.setVisible(true);
@@ -111,8 +111,8 @@ public class TelaEscolherSeguro {
 				System.out.println(buttonText);
 
 				// cotacao
-				EscolhaSeguro es = new EscolhaSeguro();
-				cotacaoEscolherSeguro = es.aplicaTaxaEscolhaSeguro(buttonText);
+//				EscolhaSeguro es = new EscolhaSeguro();
+				cotacaoEscolherSeguro += 0.01378;
 				System.out.println("\nescolha " + btnRouboEFurto.getText() + " - " + cotacaoEscolherSeguro);
 
 				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro);

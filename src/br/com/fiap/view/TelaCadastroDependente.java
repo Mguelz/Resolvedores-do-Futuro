@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import br.com.fiap.controller.ClienteController;
+import br.com.fiap.controller.CotacaoFinal;
 import br.com.fiap.controller.Dependente;
 import br.com.fiap.controller.Ehkm0;
 import br.com.fiap.controller.VeiculoController;
@@ -25,6 +26,8 @@ public class TelaCadastroDependente {
 	public ClienteController cc = new ClienteController();
 	public VeiculoController vc = new VeiculoController();
 	private double cotacaoCadastroDependente;
+	private double cotacaoFinal;
+	private double valorCarroSelecionado;
 
 	/**
 	 * Create the application.
@@ -34,10 +37,11 @@ public class TelaCadastroDependente {
 		initialize();
 	}
 
-	public TelaCadastroDependente(ClienteModel c8, VeiculoModel v3, double cotacao) {
+	public TelaCadastroDependente(ClienteModel c8, VeiculoModel v3, double cotacao, double valorCarroSelecionado) {
 		this.c8 = c8;
 		this.v3 = v3;
 		this.cotacaoCadastroDependente = cotacao;
+		this.valorCarroSelecionado = valorCarroSelecionado;
 		initialize();
 	}
 
@@ -83,6 +87,14 @@ public class TelaCadastroDependente {
 			cotacaoCadastroDependente += dp.aplicaTaxa("Feminino");
 			System.out.println("dependente F selecionado - cotacao " + cotacaoCadastroDependente + " return: " + cotacaoCadastroDependente);
 		}
+		
+		// cotacao final
+		VeiculoModel vm = new VeiculoModel();
+		vm.getFabricante();
+		
+		CotacaoFinal cf = new CotacaoFinal();
+		cotacaoFinal = cf.cotacaoFinal(valorCarroSelecionado, cotacaoCadastroDependente);
+		System.out.println("Cotacao Final - " + cotacaoFinal);
 
 //		Ehkm0 km0 = new Ehkm0();
 //		if (kmVeiculoSim.isSelected()) {

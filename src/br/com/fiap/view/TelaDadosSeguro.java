@@ -24,6 +24,7 @@ public class TelaDadosSeguro {
 	public ClienteModel c6;
 	private double cotacaoDadosSeguro;
 	private boolean seila;
+	private double valorCarroSelecionado;
 
 	/**
 	 * Create the application.
@@ -32,10 +33,11 @@ public class TelaDadosSeguro {
 		initialize();
 	}
 
-	public TelaDadosSeguro(VeiculoModel v2, ClienteModel c6, double cotacao) {
+	public TelaDadosSeguro(VeiculoModel v2, ClienteModel c6, double cotacao, double valorCarroSelecionado) {
 		this.v2 = v2;
 		this.c6 = c6;
 		this.cotacaoDadosSeguro = cotacao;
+		this.valorCarroSelecionado = valorCarroSelecionado;
 		initialize();
 	}
 
@@ -102,14 +104,14 @@ public class TelaDadosSeguro {
 		frame.getContentPane().add(proxPag);
 		adicionarIcone(proxPag);
 
-		// cotacao de isensao fiscal
-		Ehkm0 km0 = new Ehkm0();
+		// cotacao de carro 0 km
+//		Ehkm0 km0 = new Ehkm0();
 		if (kmVeiculoSim.isSelected()) {
-			cotacaoDadosSeguro += km0.aplicaTaxaEh0Km("Sim");
+			cotacaoDadosSeguro += 0.004;
 			System.out.println("Isensão Fiscal selecionado: Sim --> " + cotacaoDadosSeguro);
 		}
 		if (kmVeiculoNao.isSelected()) {
-			cotacaoDadosSeguro += km0.aplicaTaxaEh0Km("Não");
+			cotacaoDadosSeguro += 0.001;
 			System.out.println("Isensão selecionado: Não  --> " + cotacaoDadosSeguro);
 		}
 
@@ -156,7 +158,7 @@ public class TelaDadosSeguro {
 					v2.setKitgas(false);
 				}
 
-				TelaCadastroSeguro telaCadastro = new TelaCadastroSeguro(v2, c6, cotacaoDadosSeguro);
+				TelaCadastroSeguro telaCadastro = new TelaCadastroSeguro(v2, c6, cotacaoDadosSeguro, valorCarroSelecionado);
 				telaCadastro.frame.setVisible(true);
 
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)

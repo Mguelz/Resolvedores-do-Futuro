@@ -6,9 +6,10 @@ public class Ehkm0 {
 
 		if (eh0Km.equals("sim")) {
 			return 0.04;
-		} else {
+		} else if (eh0Km.equals("nao")){
 			return 0.01;
 		}
+		return 0.0;
 
 	}
 }

@@ -8,8 +8,10 @@ public class EscolhaSeguro {
 			return 0.03733;
 		} else if (tipoSeguro.equals("Roubo e Furtos")) {
 			return 0.01378;
+		} else if (tipoSeguro.equals("Compreensivo Total")) {
+			return 0.1723;
 		} else {
-			return 0.08723; // compreensivo total
+			return 0.0;
 		}
 	}
 }

@@ -13,8 +13,12 @@ import br.com.fiap.model.ClienteModel;
 public class ClienteDAO {
 	private Connection conexao;
 
-	public ClienteDAO() throws SQLException {
-		this.conexao = ConnectionFactory.conectar();
+	public ClienteDAO() {
+		try {
+			this.conexao = ConnectionFactory.conectar();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void insert(ClienteModel cliente) {
@@ -31,7 +35,7 @@ public class ClienteDAO {
 			stmt.setInt(8, cliente.getTempoHabilitacao());
 			stmt.setInt(9, cliente.getDependente());
 			stmt.setString(10, cliente.getEstado());
-			stmt.setString(11,cliente.getCelularCliente());
+			stmt.setString(11, cliente.getCelularCliente());
 			stmt.setString(12, cliente.getSenhaCliente());
 			stmt.execute();
 			stmt.close();

@@ -10,11 +10,7 @@ public class ClienteController {
 	private ClienteDAO clienteDAO;
 
 	public ClienteController() {
-		try {
-			clienteDAO = new ClienteDAO();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		clienteDAO = new ClienteDAO();
 	}
 
 	public void cadastrarCliente(ClienteModel cliente) {

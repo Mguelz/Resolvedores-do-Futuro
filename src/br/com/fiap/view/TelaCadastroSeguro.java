@@ -26,12 +26,17 @@ public class TelaCadastroSeguro {
 	public ClienteModel c7;
 	private double cotacaoCadastroSeguro;
 	private double valorCarroSelecionado;
+	private String seguroEscolhido;
+	private double cotacaoFinal;
+	private String modeloSelecionado;
 
-	public TelaCadastroSeguro(VeiculoModel v3, ClienteModel c7, double cotacao, double valorCarroSelecionado) {
+	public TelaCadastroSeguro(VeiculoModel v3, ClienteModel c7, double cotacao, double valorCarroSelecionado, String seguroEscolhido, String modeloSelecionado) {
 		this.v3 = v3;
 		this.c7 = c7;
 		this.cotacaoCadastroSeguro = cotacao;
 		this.valorCarroSelecionado = valorCarroSelecionado;
+		this.seguroEscolhido = seguroEscolhido;
+		this.modeloSelecionado = modeloSelecionado;
 		initialize();
 	}
 
@@ -177,7 +182,7 @@ public class TelaCadastroSeguro {
 
 				v3.setGaragem(tipoGaragem);
 				v3.setUtilizacao(tpUtilizacao);
-				TelaCadastroDependente telaCadastro = new TelaCadastroDependente(c7, v3, cotacaoCadastroSeguro, valorCarroSelecionado);
+				TelaCadastroDependente telaCadastro = new TelaCadastroDependente(c7, v3, cotacaoCadastroSeguro, valorCarroSelecionado, seguroEscolhido, cotacaoFinal, modeloSelecionado);
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}

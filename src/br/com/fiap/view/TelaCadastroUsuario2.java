@@ -22,9 +22,11 @@ public class TelaCadastroUsuario2 {
 	private JPasswordField digiteSenha;
 	private ClienteModel c1 = new ClienteModel();
 	private double cotacaoUsuario2;
+	private String seguroEscolhido;
 
-	public TelaCadastroUsuario2(double cotacao) {
+	public TelaCadastroUsuario2(double cotacao, String seguroEscolhido) {
 		this.cotacaoUsuario2 = cotacao;
+		this.seguroEscolhido = seguroEscolhido;
 		initialize();
 	}
 
@@ -88,7 +90,7 @@ public class TelaCadastroUsuario2 {
 				c1.setNomeCliente(nome);
 				c1.setEmail(email);
 				c1.setSenha(senha);
-				TelaCadastroUsuario3 telaCadastro = new TelaCadastroUsuario3(c1, cotacaoUsuario2);
+				TelaCadastroUsuario3 telaCadastro = new TelaCadastroUsuario3(c1, cotacaoUsuario2, seguroEscolhido);
 				telaCadastro.frame.setVisible(true);
 //                TelaInicial.mt.salvar(nome, email, senha);
 				frame.dispose();

@@ -7,16 +7,6 @@ import br.com.fiap.util.CriptografiaUtils;
 //import br.com.fiap.util.CriptografiaUtils;
 
 public class ClienteModel {
-//	private long cpf;
-//	private int idCorretor;
-//	private Date dataNascimento; // Quando fazer amarração com telas colocar o método Date.ValueOf(String);
-//	private String nome;
-//	private String email;
-//	private String estadoCivil;
-//	private String genero;
-//	private String celular;
-//	private int tempoHabilitacao;
-//	
 	private long cpf;
 	private String nomeCliente;
 	private int corretorId;
@@ -31,6 +21,11 @@ public class ClienteModel {
 	private String estado;
 
 	public ClienteModel() {
+	}
+
+	public ClienteModel(String nome, String email) {
+		this.nomeCliente = nome;
+		this.email = email;
 	}
 
 	public ClienteModel(long cpf, String nomeCliente, int corretorId, Date dataNascimento, String email,
@@ -133,7 +128,7 @@ public class ClienteModel {
 	public String getSenhaCliente() {
 		return senhaCliente;
 	}
-	
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
@@ -141,16 +136,14 @@ public class ClienteModel {
 	public String getEstado() {
 		return estado;
 	}
-	
 
-	public void setSenha (String senhaCliente) {
+	public void setSenha(String senhaCliente) {
 		try {
 			this.senhaCliente = CriptografiaUtils.criptografar(senhaCliente);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 
 }

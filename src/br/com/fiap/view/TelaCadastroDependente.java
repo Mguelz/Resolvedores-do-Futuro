@@ -28,20 +28,29 @@ public class TelaCadastroDependente {
 	private double cotacaoCadastroDependente;
 	private double cotacaoFinal;
 	private double valorCarroSelecionado;
+	private String seguroEscolhido;
+	private String modeloSelecionado;
 
 	/**
 	 * Create the application.
 	 */
 
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public TelaCadastroDependente() {
 		initialize();
 	}
 
-	public TelaCadastroDependente(ClienteModel c8, VeiculoModel v3, double cotacao, double valorCarroSelecionado) {
+	public TelaCadastroDependente(ClienteModel c8, VeiculoModel v3, double cotacao, double valorCarroSelecionado,
+			String seguroEscolhido, double cotacaoFinal,  String modeloSelecionado) {
 		this.c8 = c8;
 		this.v3 = v3;
 		this.cotacaoCadastroDependente = cotacao;
 		this.valorCarroSelecionado = valorCarroSelecionado;
+		this.seguroEscolhido = seguroEscolhido;
+		this.cotacaoFinal = cotacaoFinal;
+		this.modeloSelecionado = modeloSelecionado;
 		initialize();
 	}
 
@@ -59,39 +68,42 @@ public class TelaCadastroDependente {
 
 		JCheckBox checkMasc = new JCheckBox("");
 		checkMasc.setBackground(new Color(0, 103, 80));
-		checkMasc.setBounds(153, 224, 60, 54); // Aumentar o tamanho para 50x50 pixels
+		checkMasc.setBounds(153, 177, 60, 54); // Aumentar o tamanho para 50x50 pixels
 		frame.getContentPane().add(checkMasc);
 
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JCheckBox checkFem = new JCheckBox("");
 		checkFem.setBackground(new Color(0, 103, 80));
-		checkFem.setBounds(153, 402, 60, 54);
+		checkFem.setBounds(153, 360, 60, 54);
 		frame.getContentPane().add(checkFem);
 
 		JCheckBox checkNao = new JCheckBox("");
 		checkNao.setBackground(new Color(0, 103, 80));
-		checkNao.setBounds(153, 583, 60, 54);
+		checkNao.setBounds(153, 545, 60, 54);
 		frame.getContentPane().add(checkNao);
 
 		// cotacao dependente
 		Dependente dp = new Dependente();
 		if (checkNao.isSelected()) {
 			cotacaoCadastroDependente += dp.aplicaTaxa("Não");
-			System.out.println("nenhum dependente selecionado - cotacao " + cotacaoCadastroDependente + " return: " + cotacaoCadastroDependente);
+			System.out.println("nenhum dependente selecionado - cotacao " + cotacaoCadastroDependente + " return: "
+					+ cotacaoCadastroDependente);
 		} else if (checkMasc.isSelected()) {
 			cotacaoCadastroDependente += dp.aplicaTaxa("Masculino");
-			System.out.println("dependente M selecionado - cotacao " + cotacaoCadastroDependente + " return: " + cotacaoCadastroDependente);
+			System.out.println("dependente M selecionado - cotacao " + cotacaoCadastroDependente + " return: "
+					+ cotacaoCadastroDependente);
 		}
 		if (checkFem.isSelected()) {
 			cotacaoCadastroDependente += dp.aplicaTaxa("Feminino");
-			System.out.println("dependente F selecionado - cotacao " + cotacaoCadastroDependente + " return: " + cotacaoCadastroDependente);
+			System.out.println("dependente F selecionado - cotacao " + cotacaoCadastroDependente + " return: "
+					+ cotacaoCadastroDependente);
 		}
-		
+
 		// cotacao final
 		VeiculoModel vm = new VeiculoModel();
 		vm.getFabricante();
-		
+
 		CotacaoFinal cf = new CotacaoFinal();
 		cotacaoFinal = cf.cotacaoFinal(valorCarroSelecionado, cotacaoCadastroDependente);
 		System.out.println("Cotacao Final - " + cotacaoFinal);
@@ -124,7 +136,8 @@ public class TelaCadastroDependente {
 				System.out.println(v3.getCpfCliente() + "||" + v3.getIdCliente() + "||" + v3.getNumeroChassi());
 				cc.cadastrarCliente(c8);
 				vc.cadastrarVeiculo(v3);
-				TelaGerarApolice telaCadastro = new TelaGerarApolice();
+				TelaGerarApolice telaCadastro = new TelaGerarApolice(c8, v3, cotacaoCadastroDependente,
+						valorCarroSelecionado, seguroEscolhido, cotacaoFinal, modeloSelecionado);
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}

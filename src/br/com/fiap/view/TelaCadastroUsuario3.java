@@ -28,13 +28,15 @@ public class TelaCadastroUsuario3 {
 	String dataString;
 	private ClienteModel c2;
 	private double cotacaoUsuario3;
+	private String seguroEscolhido;
 	/**
 	 * Create the application.
 	 * 
 	 */
-	public TelaCadastroUsuario3(ClienteModel clienteModel, double cotacao) {
+	public TelaCadastroUsuario3(ClienteModel clienteModel, double cotacao, String seguroEscolhido) {
 		this.c2 = clienteModel;
 		this.cotacaoUsuario3 = cotacao;
+		this.seguroEscolhido = seguroEscolhido;
 		initialize();
 	}
 
@@ -109,7 +111,7 @@ public class TelaCadastroUsuario3 {
 				c2.setCpf(Long.parseLong(cpf));
 				c2.setDataNascimento(dataSql);
 				c2.setCelularCliente(celular);
-				TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario(c2, cotacaoUsuario3);
+				TelaCadastroUsuario telaCadastro = new TelaCadastroUsuario(c2, cotacaoUsuario3, seguroEscolhido);
 				telaCadastro.frame.setVisible(true);
 
 				//System.out.println(nome+senha+email);

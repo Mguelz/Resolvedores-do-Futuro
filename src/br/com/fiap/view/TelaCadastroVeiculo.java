@@ -31,14 +31,16 @@ public class TelaCadastroVeiculo {
 	private VeiculoModel v1 = new VeiculoModel();
 	private double cotacaoVeiculo;
 	private double valorCarroSelecionado;
+	private String seguroEscolhido;
 
 	/**
 	 * Create the application.
 	 */
-	public TelaCadastroVeiculo(ClienteModel cliente, double cotacaoVeiculo, double valorCarroSelecionado) {
+	public TelaCadastroVeiculo(ClienteModel cliente, double cotacaoVeiculo, double valorCarroSelecionado, String seguroEscolhido) {
 		this.c4 = cliente;
 		this.cotacaoVeiculo = cotacaoVeiculo;
 		this.valorCarroSelecionado = valorCarroSelecionado;
+		this.seguroEscolhido = seguroEscolhido;
 		initialize();
 	}
 
@@ -140,7 +142,7 @@ public class TelaCadastroVeiculo {
 				System.out.println(c4.getCpf());
 				v1.setCpfCliente(c4.getCpf());
 				System.out.println(v1.getCpfCliente());
-				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2(c4, v1, cotacaoVeiculo, valorCarroSelecionado);
+				TelaCadastroVeiculo2 telaCadastro = new TelaCadastroVeiculo2(c4, v1, cotacaoVeiculo, valorCarroSelecionado, seguroEscolhido);
 				telaCadastro.frame.setVisible(true);
 				System.out.println("Placa:  " + placa + " Numero Chassi: " + chassi);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)

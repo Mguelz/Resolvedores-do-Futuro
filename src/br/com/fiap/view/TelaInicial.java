@@ -6,18 +6,18 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import br.com.fiap.controller.ClienteController;
 import br.com.fiap.model.ClienteModel;
 
 public class TelaInicial {
 	//DTO(Data Transfer Object).
-	private JFrame frame;
+	public JFrame frame;
 	private ClienteModel c1 = new ClienteModel();
 
 	/**
@@ -61,7 +61,7 @@ public class TelaInicial {
 		btnIniciarCotacao.setBorderPainted(false);
 		btnIniciarCotacao.setBorder(null);
 		btnIniciarCotacao.setBackground(new Color(0, 103, 80));
-		btnIniciarCotacao.setBounds(109, 500, 189, 80);
+		btnIniciarCotacao.setBounds(111, 513, 189, 80);
 		frame.getContentPane().add(btnIniciarCotacao);
 		
 		
@@ -72,7 +72,7 @@ public class TelaInicial {
 		btnConfigurarDados.setBorderPainted(false);
 		btnConfigurarDados.setBorder(null);
 		btnConfigurarDados.setBackground(new Color(0, 103, 80));
-		btnConfigurarDados.setBounds(448, 500, 189, 80);
+		btnConfigurarDados.setBounds(452, 513, 189, 80);
 		frame.getContentPane().add(btnConfigurarDados);
 		
 
@@ -91,7 +91,20 @@ public class TelaInicial {
             }
         });
 		
-		
+        btnConfigurarDados.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                TelaEscolhaCRUD telaCadastro;
+				try {
+					telaCadastro = new TelaEscolhaCRUD();
+					telaCadastro.frame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+               frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
+            }
+        });
 		
 		
 		//deixar em ultimo!!!!!!

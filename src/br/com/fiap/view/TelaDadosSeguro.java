@@ -25,6 +25,9 @@ public class TelaDadosSeguro {
 	private double cotacaoDadosSeguro;
 	private boolean seila;
 	private double valorCarroSelecionado;
+	private String seguroEscolhido;
+	private double cotacaoFinal;
+	private String modeloSelecionado;
 
 	/**
 	 * Create the application.
@@ -33,11 +36,14 @@ public class TelaDadosSeguro {
 		initialize();
 	}
 
-	public TelaDadosSeguro(VeiculoModel v2, ClienteModel c6, double cotacao, double valorCarroSelecionado) {
+	public TelaDadosSeguro(VeiculoModel v2, ClienteModel c6, double cotacao, double valorCarroSelecionado, String seguroEscolhido, double cotacaoFinal, String modeloSelecionado) {
 		this.v2 = v2;
 		this.c6 = c6;
 		this.cotacaoDadosSeguro = cotacao;
 		this.valorCarroSelecionado = valorCarroSelecionado;
+		this.seguroEscolhido = seguroEscolhido;
+		this.cotacaoFinal = cotacaoFinal;
+		this.modeloSelecionado = modeloSelecionado;
 		initialize();
 	}
 
@@ -158,7 +164,7 @@ public class TelaDadosSeguro {
 					v2.setKitgas(false);
 				}
 
-				TelaCadastroSeguro telaCadastro = new TelaCadastroSeguro(v2, c6, cotacaoDadosSeguro, valorCarroSelecionado);
+				TelaCadastroSeguro telaCadastro = new TelaCadastroSeguro(v2, c6, cotacaoDadosSeguro, valorCarroSelecionado, seguroEscolhido, modeloSelecionado);
 				telaCadastro.frame.setVisible(true);
 
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)

@@ -20,6 +20,7 @@ public class TelaEscolherSeguro {
 
 	public JFrame frame;
 	private double cotacaoEscolherSeguro;
+	private String seguroEscolhido;
 
 	/**
 	 * Create the application.
@@ -61,8 +62,9 @@ public class TelaEscolherSeguro {
 				EscolhaSeguro es = new EscolhaSeguro();
 				cotacaoEscolherSeguro = 0.09723;
 				System.out.println("\nescolha " + btnCompreensivoTotal.getText() + " - " + cotacaoEscolherSeguro + " retorno: " + es.aplicaTaxaEscolhaSeguro(buttonText));
-
-				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro);
+				seguroEscolhido = "Perda Total Por Colisão";
+				
+				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro, seguroEscolhido);
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
@@ -88,8 +90,9 @@ public class TelaEscolherSeguro {
 				EscolhaSeguro es = new EscolhaSeguro();
 				cotacaoEscolherSeguro = es.aplicaTaxaEscolhaSeguro(buttonText);
 				System.out.println("\nescolha " + btnPerdaTotalPor.getText() + " - " + cotacaoEscolherSeguro);
+				seguroEscolhido = "Perda Total Por Colisão";
 
-				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro); // aqui tava cotacaoEscolherSeguro
+				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro, seguroEscolhido); // aqui tava cotacaoEscolherSeguro
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
@@ -114,8 +117,9 @@ public class TelaEscolherSeguro {
 //				EscolhaSeguro es = new EscolhaSeguro();
 				cotacaoEscolherSeguro += 0.01378;
 				System.out.println("\nescolha " + btnRouboEFurto.getText() + " - " + cotacaoEscolherSeguro);
-
-				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro);
+				seguroEscolhido = "Perda Total Por Colisão";
+				
+				TelaCadastroUsuario2 telaCadastro = new TelaCadastroUsuario2(cotacaoEscolherSeguro, seguroEscolhido);
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}

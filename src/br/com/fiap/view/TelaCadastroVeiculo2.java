@@ -17,6 +17,7 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 
 import br.com.fiap.controller.AnoDoCarro;
 import br.com.fiap.controller.CorretorController;
+import br.com.fiap.controller.ModeloCarro;
 import br.com.fiap.model.ClienteModel;
 import br.com.fiap.model.VeiculoModel;
 
@@ -32,17 +33,20 @@ public class TelaCadastroVeiculo2 {
 	private CorretorController cc;
 	private double cotacaoVeiculo;
 	private double valorCarroSelecionado;
+	private String seguroEscolhido;
+	private double cotacaoFinal;
 
 	public TelaCadastroVeiculo2() {
 		initialize();
 	}
 
 	public TelaCadastroVeiculo2(ClienteModel cliente, VeiculoModel veiculo, double cotacao,
-			double valorCarroSelecionado) {
+			double valorCarroSelecionado,String seguroEscolhido) {
 		this.c5 = cliente;
 		this.v2 = veiculo;
 		this.valorCarroSelecionado = valorCarroSelecionado;
 		this.cotacaoVeiculo = cotacao;
+		this.seguroEscolhido = seguroEscolhido;
 		initialize();
 	}
 
@@ -144,6 +148,25 @@ public class TelaCadastroVeiculo2 {
 //		comboModelo.addItem("Tucson");
 		comboModelo.addItem("Uno");
 //		comboModelo.addItem("Yaris");
+		
+		
+		
+		// cotacao da marca do veiculo
+//				String marcaSelecionada = (String) comboMarca.getSelectedItem();
+//				ModeloCarro mc = new ModeloCarro();
+//				valorCarroSelecionado = mc.aplicaTaxaModeloCarro(marcaSelecionada);
+//				System.out.println("marca selecionado: " + marcaSelecionada + " - " + valorCarroSelecionado);
+		
+		
+		
+		String modeloSelecionado = (String) comboModelo.getSelectedItem();
+		
+		
+		
+		
+		
+		
+		
 
 		JComboBox<String> comboCorretor = new JComboBox<String>();
 		comboCorretor.setEditable(true);
@@ -299,7 +322,7 @@ public class TelaCadastroVeiculo2 {
 				c5.setCorretorId(corretor2);
 				v2.setIdCliente(c5.getCorretorId());
 				System.out.println(c5.getCorretorId());
-				TelaDadosSeguro telaCadastro = new TelaDadosSeguro(v2, c5, cotacaoVeiculo, valorCarroSelecionado);
+				TelaDadosSeguro telaCadastro = new TelaDadosSeguro(v2, c5, cotacaoVeiculo, valorCarroSelecionado, seguroEscolhido, cotacaoFinal,modeloSelecionado);
 				telaCadastro.frame.setVisible(true);
 
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)

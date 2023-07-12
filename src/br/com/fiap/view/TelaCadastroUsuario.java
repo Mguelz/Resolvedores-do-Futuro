@@ -28,12 +28,14 @@ public class TelaCadastroUsuario {
 	private ClienteModel c3;
 	private double cotacaoCadastroUsuario;
 	private double valorCarroSelecionado;
+	private String seguroEscolhido;
 
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public TelaCadastroUsuario(ClienteModel clienteModel, double cotacao) {
+	public TelaCadastroUsuario(ClienteModel clienteModel, double cotacao, String seguroEscolhido) {
 		this.c3 = clienteModel;
+		this.seguroEscolhido = seguroEscolhido;
 		System.out.println(c3);
 		System.out.println(c3.getNomeCliente() + "/n" + c3.getEmail() + "/n" + c3.getSenhaCliente());
 
@@ -302,7 +304,7 @@ public class TelaCadastroUsuario {
 				c3.setTempoHabilitacao(tcnh);
 //				c3.setCorretorId(1);
 //				cc.cadastrarCliente(c3);
-				TelaCadastroVeiculo telaCadastro = new TelaCadastroVeiculo(c3, cotacaoCadastroUsuario, valorCarroSelecionado);
+				TelaCadastroVeiculo telaCadastro = new TelaCadastroVeiculo(c3, cotacaoCadastroUsuario, valorCarroSelecionado, seguroEscolhido);
 				telaCadastro.frame.setVisible(true);
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}

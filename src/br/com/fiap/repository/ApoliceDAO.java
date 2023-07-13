@@ -29,7 +29,7 @@ public class ApoliceDAO {
 			stmt.setDouble(3, apolice.getValorPremio());
 			stmt.setString(4, apolice.getChassi());
 			stmt.setLong(5, apolice.getCpfCliente());
-			stmt.setLong(5, apolice.getIdVeiculo());
+			stmt.setLong(6, apolice.getIdVeiculo());
 			
 			
 			// executar a query
@@ -44,14 +44,14 @@ public class ApoliceDAO {
 
 	public ApoliceModel selectById(long idApolice) {
 		ApoliceModel apolice = null;
-		String sql = "select * from TB_SGR_APOLICE where id_apolice=?";
+		String sql = "select * from SGR_APOLICE where id_apolice=?";
 
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, idApolice);
 			ResultSet rs = stmt.executeQuery();
 
-			while (rs.next()) { // enquanto tiver dados na tabela
+			if (rs.next()) { // enquanto tiver dados na tabela
 				apolice = new ApoliceModel();
 				apolice.setIdApolice(rs.getLong("id_apolice"));
 				apolice.setDataEmissao(rs.getDate("dt_emissao"));
@@ -70,7 +70,7 @@ public class ApoliceDAO {
 
 	// update
 	public void update(ApoliceModel apolice) {
-		String sql = "update TB_SGR_APOLICE set DT_EMISSAO=?, VL_PREMIO=?, SGR_VEICULO_SGR_CLIENTE_NR_CPF=?, SGR_VEICULO_SGR_CLIENTE_NR_ID=?  where id_apolice=?";
+		String sql = "update SGR_APOLICE set DT_EMISSAO=?, VL_PREMIO=?, SGR_VEICULO_SGR_CLIENTE_NR_CPF=?, SGR_VEICULO_SGR_CLIENTE_NR_ID=?  where id_apolice=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setDate(1, apolice.getDataEmissao());
@@ -89,7 +89,7 @@ public class ApoliceDAO {
 	// delete
 
 	public void delete(long IdApolice) {
-		String sql = "delete from TB_SGR_APOLICE where id_apolice=?";
+		String sql = "delete from SGR_APOLICE where id_apolice=?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, IdApolice);
@@ -101,7 +101,7 @@ public class ApoliceDAO {
 
 	}
 	public List<ApoliceModel> selectAll() {
-		List<ApoliceModel> apolices = new ArrayList<ApoliceModel>();
+		List<ApoliceModel> apolices = new ArrayList<>();
 		String sql = "select * from sgr_apolice order by id_apolice";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -110,8 +110,11 @@ public class ApoliceDAO {
 			while (rs.next()) {
 				ApoliceModel apolice = new ApoliceModel();
 				apolice.setIdApolice(rs.getLong("id_apolice"));
-				apolice.setDataEmissao(rs.getDate("dt_apolice"));
-				apolice.setValorPremio(rs.getDouble("vl_seguro"));
+				apolice.setDataEmissao(rs.getDate("dt_emissao"));
+				apolice.setValorPremio(rs.getDouble("vl_premio"));
+				apolice.setChassi(rs.getString("sgr_veiculo_ds_chassi"));
+				apolice.setCpfCliente(rs.getLong("sgr_veiculo_sgr_cliente_nr_cpf"));
+				apolice.setIdVeiculo(rs.getLong("sgr_veiculo_sgr_cliente_nr_id"));
 			}
 			rs.close();
 			stmt.close();
@@ -121,4 +124,4 @@ public class ApoliceDAO {
 		return apolices;
 
 }
-}//TODO NECESSÁRIO FAZER SELECT ALL
+}

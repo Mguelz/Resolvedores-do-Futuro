@@ -2,16 +2,16 @@ package br.com.fiap.testes;
 
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.List;
 
-import br.com.fiap.controller.ClienteController;
-import br.com.fiap.model.ClienteModel;
-import br.com.fiap.model.EspecialidadeModel;
+import br.com.fiap.controller.VeiculoController;
 import br.com.fiap.model.VeiculoModel;
-import br.com.fiap.repository.VeiculoDAO;
+
 
 public class TestaDAO {
 	public static void main(String[] args) throws SQLException, ParseException {
+		VeiculoModel v1= new VeiculoModel("123123123", "placa", "modelo", true, "1990", "fabricante", "combustivel",(byte)1, true, false, "pessoal",1, 50000, 44140484841L);
+		VeiculoController vc = new VeiculoController();
+		vc.cadastrarVeiculo(v1);
 
 //		ApoliceController ac = new ApoliceController();
 //		Veiculo carro = new Veiculo("AB12345", "placa", "kkkkk", true, "2005", "fabricante", "combustivel", (byte) 1,
@@ -90,8 +90,8 @@ public class TestaDAO {
 //		for (Especialidade especialidade : especialidades) {
 //			System.out.println(especialidade.getCd_especialidade());
 //		}
-		
-		
-
+		double seila = 0.6595;// 0.40690000000000004;
+		double carro = 25_000;
+		System.out.println(seila * carro);
 	}
 }

@@ -1,7 +1,6 @@
 package br.com.fiap.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.LookAndFeel;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 
+import br.com.fiap.controller.AnoDoCarro;
+import br.com.fiap.controller.CorretorController;
+import br.com.fiap.controller.ModeloCarro;
+import br.com.fiap.model.ClienteModel;
+import br.com.fiap.model.VeiculoModel;
+
 public class TelaCadastroVeiculo2 {
 
 	public JFrame frame;
@@ -23,27 +28,25 @@ public class TelaCadastroVeiculo2 {
 	private JTextField textField_2;
 	private JComboBox<String> tipoUtilizacao;
 	private JComboBox<String> comboAno;
+	private ClienteModel c5;
+	private VeiculoModel v2;
+	private CorretorController cc;
+	private double cotacaoVeiculo;
+	private double valorCarroSelecionado;
+	private String seguroEscolhido;
+	private double cotacaoFinal;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroVeiculo2 window = new TelaCadastroVeiculo2();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public TelaCadastroVeiculo2() {
+		initialize();
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public TelaCadastroVeiculo2() {
+	public TelaCadastroVeiculo2(ClienteModel cliente, VeiculoModel veiculo, double cotacao,
+			double valorCarroSelecionado,String seguroEscolhido) {
+		this.c5 = cliente;
+		this.v2 = veiculo;
+		this.valorCarroSelecionado = valorCarroSelecionado;
+		this.cotacaoVeiculo = cotacao;
+		this.seguroEscolhido = seguroEscolhido;
 		initialize();
 	}
 
@@ -59,16 +62,17 @@ public class TelaCadastroVeiculo2 {
 		ImageIcon image = new ImageIcon("LogoTokio.png"); // criando o ícone da imagem
 		frame.setIconImage(image.getImage()); // mudando o ícone do frame
 
-		JComboBox<String> comboMarca = new JComboBox<String>();
-		comboMarca.setEditable(true);
-		comboMarca.setToolTipText("Tipo de utilização");
-		comboMarca.setMaximumRowCount(3);
-		comboMarca.setForeground(new Color(0, 103, 80));
-		comboMarca.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		comboMarca.setBackground(new Color(255, 255, 255));
-		comboMarca.setBounds(98, 263, 344, 87);
-		frame.getContentPane().add(comboMarca);
-		comboMarca.setSelectedItem("Selecione a marca"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+		JComboBox<String> comboModelo = new JComboBox<String>();
+		comboModelo.setEditable(true);
+		comboModelo.setToolTipText("");
+		comboModelo.setMaximumRowCount(3);
+		comboModelo.setForeground(new Color(0, 103, 80));
+		comboModelo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		comboModelo.setBackground(new Color(255, 255, 255));
+		comboModelo.setBounds(98, 263, 344, 87);
+		frame.getContentPane().add(comboModelo);
+		comboModelo.setSelectedItem("Selecione o modelo"); // deixa um titulo na comboBox -- (selecione o editable no
+															// painel propertis)
 
 		JComboBox<String> comboAno = new JComboBox<String>();
 		comboAno.setEditable(true);
@@ -79,7 +83,8 @@ public class TelaCadastroVeiculo2 {
 		comboAno.setBackground(new Color(255, 255, 255));
 		comboAno.setBounds(98, 488, 344, 87);
 		frame.getContentPane().add(comboAno);
-		comboAno.setSelectedItem("Selecione o ano"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+		comboAno.setSelectedItem("Selecione o ano"); // deixa um titulo na comboBox -- (selecione o editable no painel
+														// propertis)
 
 		comboAno.addItem("2023");
 		comboAno.addItem("2022");
@@ -105,6 +110,62 @@ public class TelaCadastroVeiculo2 {
 		comboAno.addItem("2002");
 		comboAno.addItem("2001");
 		comboAno.addItem("2000");
+		// cotacar do ano do carro
+		// nao esta puxando o ano certo, sempre cai no else
+		String anoCarroSelecionado = (String) comboAno.getSelectedItem(); // .toString();
+		AnoDoCarro ac = new AnoDoCarro();
+		cotacaoVeiculo += ac.aplicaTaxaAnoDoCarro(anoCarroSelecionado); // sempre vai na opcao else (nao esta comparando
+																		// as strings)
+		System.out.println(anoCarroSelecionado + " || " + comboAno.getSelectedItem());
+		System.out.println("ano selecionado: " + anoCarroSelecionado + " - cotacao = " + cotacaoVeiculo + " retorno = "
+				+ ac.aplicaTaxaAnoDoCarro(anoCarroSelecionado));
+
+		// alguns comentados para que a comboBox fique menor
+		// nao tem nenhuma logica em cima dos modelos dos carros (a logica ja esta no
+		// fabricante)
+		comboModelo.addItem("Accent");
+		comboModelo.addItem("Amarok");
+		comboModelo.addItem("Argo");
+//		comboModelo.addItem("Camaro");
+//		comboModelo.addItem("Camry");
+		comboModelo.addItem("Corolla");
+		comboModelo.addItem("Corsa");
+		comboModelo.addItem("Creta");
+		comboModelo.addItem("Cronos");
+		comboModelo.addItem("Cruze");
+		comboModelo.addItem("Elantra");
+		comboModelo.addItem("Fusca");
+		comboModelo.addItem("Gol");
+		comboModelo.addItem("HB20");
+		comboModelo.addItem("Hillux");
+		comboModelo.addItem("Jetta");
+		comboModelo.addItem("Onix");
+		comboModelo.addItem("Palio");
+		comboModelo.addItem("Polo");
+//		comboModelo.addItem("RAV4");
+		comboModelo.addItem("Silverado");
+		comboModelo.addItem("Strada");
+//		comboModelo.addItem("Tucson");
+		comboModelo.addItem("Uno");
+//		comboModelo.addItem("Yaris");
+		
+		
+		
+		// cotacao da marca do veiculo
+//				String marcaSelecionada = (String) comboMarca.getSelectedItem();
+//				ModeloCarro mc = new ModeloCarro();
+//				valorCarroSelecionado = mc.aplicaTaxaModeloCarro(marcaSelecionada);
+//				System.out.println("marca selecionado: " + marcaSelecionada + " - " + valorCarroSelecionado);
+		
+		
+		
+		String modeloSelecionado = (String) comboModelo.getSelectedItem();
+		
+		
+		
+		
+		
+		
 		
 
 		JComboBox<String> comboCorretor = new JComboBox<String>();
@@ -116,7 +177,12 @@ public class TelaCadastroVeiculo2 {
 		comboCorretor.setBackground(new Color(255, 255, 255));
 		comboCorretor.setBounds(587, 263, 344, 87);
 		frame.getContentPane().add(comboCorretor);
-		comboCorretor.setSelectedItem("Escolha o corretor"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+		comboCorretor.setSelectedItem("Escolha o corretor"); // deixa um titulo na comboBox -- (selecione o editable no
+																// painel propertis)
+
+		// nao tem nenhuma logica de cotacao em cima dos corretores
+		comboCorretor.addItem("Márcio R.- SP");
+		comboCorretor.addItem("Ana S.- RJ");
 
 		JComboBox<String> comboCombustivel = new JComboBox<String>();
 		comboCombustivel.setEditable(true);
@@ -127,14 +193,15 @@ public class TelaCadastroVeiculo2 {
 		comboCombustivel.setBackground(new Color(255, 255, 255));
 		comboCombustivel.setBounds(587, 488, 344, 87);
 		frame.getContentPane().add(comboCombustivel);
-		comboCombustivel.setSelectedItem("Tipo combustivel"); //  deixa um titulo na comboBox -- (selecione o editable no painel propertis)
+		comboCombustivel.setSelectedItem("Tipo combustivel"); // deixa um titulo na comboBox -- (selecione o editable no
+																// painel propertis)
 
 		comboCombustivel.addItem("Gasolina");
 		comboCombustivel.addItem("Alcool");
 		comboCombustivel.addItem("Flex");
 		comboCombustivel.addItem("Diesel");
 
-		comboMarca.setUI(new BasicComboBoxUI() {
+		comboModelo.setUI(new BasicComboBoxUI() {
 			@Override
 			protected JButton createArrowButton() {
 				JButton button = new JButton();
@@ -239,12 +306,25 @@ public class TelaCadastroVeiculo2 {
 
 		proxPag.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaDadosSeguro telaCadastro = new TelaDadosSeguro();
-				telaCadastro.frame.setVisible(true);
+				int corretor2 = 1;
 				String combustivel = (String) comboCombustivel.getSelectedItem();
 				String ano = (String) comboAno.getSelectedItem();
-				System.out.println(combustivel + " "+ ano);
-				
+				String modelo = (String) comboModelo.getSelectedItem();
+				String corretor = (String) comboCorretor.getSelectedItem();
+				if (corretor.equals("Márcio R.- SP")) {
+					corretor2 = 1;
+				} else {
+					corretor2 = 2;
+				}
+				v2.setCombustivel(combustivel);
+				v2.setDataFabricacao(ano);
+				v2.setModelo(modelo);
+				c5.setCorretorId(corretor2);
+				v2.setIdCliente(c5.getCorretorId());
+				System.out.println(c5.getCorretorId());
+				TelaDadosSeguro telaCadastro = new TelaDadosSeguro(v2, c5, cotacaoVeiculo, valorCarroSelecionado, seguroEscolhido, cotacaoFinal,modeloSelecionado);
+				telaCadastro.frame.setVisible(true);
+
 				frame.dispose(); // Fechar a tela atual (TelaDadosSeguro)
 			}
 		});

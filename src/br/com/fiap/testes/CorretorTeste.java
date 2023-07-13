@@ -1,10 +1,6 @@
 package br.com.fiap.testes;
 
-import java.util.List;
-
 import br.com.fiap.controller.CorretorController;
-import br.com.fiap.model.CorretorModel;
-import br.com.fiap.model.EspecialidadeModel;
 
 public class CorretorTeste {
 	public static void main(String[] args) {

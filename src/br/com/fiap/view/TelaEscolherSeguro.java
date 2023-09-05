@@ -73,7 +73,7 @@ public class TelaEscolherSeguro {
 		btnCompreensivoTotal.setFont(new Font("SansSerif", Font.PLAIN, 30));
 		btnCompreensivoTotal.setBackground(new Color(0, 103, 80));
 		btnCompreensivoTotal.setForeground(Color.WHITE);
-		btnCompreensivoTotal.setBounds(90, 438, 316, 148);
+		btnCompreensivoTotal.setBounds(138, 580, 316, 148);
 		btnCompreensivoTotal.setBorderPainted(false);
 		btnCompreensivoTotal.setBorder(null);
 		btnCompreensivoTotal.setFocusPainted(false);
